@@ -18,12 +18,32 @@ interface AuthRefreshResponse {
 }
 
 export interface NuAuth {
+  /**
+   * Access token
+   */
   token: Ref<string | null>,
+  /**
+   * Expired date
+   */
   expires: Ref<string | null>,
+  /**
+   * Check token is almost expired (15 minutes before Expired-Date)
+   */
   isAlmostExpired: ComputedRef<boolean>,
-
+  /**
+   * Redirect to Login Page
+   * @param path Redirect path after login success
+   */
   login: (redirect?: string) => Promise<void>,
+  /**
+   * Redirect to Logout Page
+   * @param path Redirect path after re-login success
+   */
   logout: (redirect?: string) => Promise<void>,
+  /**
+   * Request new access-token
+   * @returns new access-token
+   */
   refresh: () => Promise<string>,
 }
 
@@ -34,8 +54,9 @@ export function useNuAuth (): NuAuth {
   const event        = useRequestEvent()
 
   const isAlmostExpired = computed(() => {
+    // Assume if has no cookies expires, the token is already expired
     if (!expires.value)
-      return false
+      return true
 
     const end  = new Date(expires.value)
     const now  = new Date()
