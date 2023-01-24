@@ -818,7 +818,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.48.2
     "@vue/eslint-config-typescript": ^11.0.2
     eslint: ^8.32.0
-    eslint-config-standard-with-typescript: ^31.0.0
+    eslint-config-standard-with-typescript: ^32.0.0
     eslint-formatter-pretty: ^4.1.0
     eslint-plugin-align-assignments: ^1.1.2
     eslint-plugin-import: ^2.27.5
@@ -3085,9 +3085,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-standard-with-typescript@npm:^31.0.0":
-  version: 31.0.0
-  resolution: "eslint-config-standard-with-typescript@npm:31.0.0"
+"eslint-config-standard-with-typescript@npm:^32.0.0":
+  version: 32.0.0
+  resolution: "eslint-config-standard-with-typescript@npm:32.0.0"
   dependencies:
     "@typescript-eslint/parser": ^5.0.0
     eslint-config-standard: 17.0.0
@@ -3098,7 +3098,7 @@ __metadata:
     eslint-plugin-n: ^15.0.0
     eslint-plugin-promise: ^6.0.0
     typescript: "*"
-  checksum: 2f2c2b02b5e4af6c06e7f11ad81321a90ba362a9b3c546a22933ee56cabb222c72990b4f31e23bc6fd215c43a334d707eeb07a10c7fd297bbd8d1c978b8dc14a
+  checksum: a274dbbcd8b874eba4c677751bd9877be4c0a3e9a8f9e8f02cd7f9a8c8b9ff11ada2bebc05c7f0f6b0b4e4fff2a9d36ad8ee90139c7e710d525cbe6e725b0df0
   languageName: node
   linkType: hard
 
