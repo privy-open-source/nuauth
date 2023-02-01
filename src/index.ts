@@ -1,10 +1,6 @@
 import { withQuery, encodePath } from 'ufo'
 import { sendRedirect } from 'h3'
-import {
-  computed,
-  ComputedRef,
-  Ref,
-} from 'vue-demi'
+import { Ref } from 'vue-demi'
 import { useCookie, useRequestEvent } from '#imports'
 
 interface AuthRefreshResponse {
@@ -28,8 +24,9 @@ export interface NuAuth {
   expires: Ref<string | null>,
   /**
    * Check token is almost expired (15 minutes before Expired-Date)
+   * @param threshold {number} threshold before expired, default is 15 minutes
    */
-  isAlmostExpired: ComputedRef<boolean>,
+  isAlmostExpired: (threshold?: number) => boolean,
   /**
    * Redirect to Login Page
    * @param path Redirect path after login success
@@ -53,8 +50,8 @@ export function useNuAuth (): NuAuth {
   const expires      = useCookie('session/expires')
   const event        = useRequestEvent()
 
-  const isAlmostExpired = computed(() => {
-    // Assume if has no cookies expires, the token is already expired
+  function isAlmostExpired (threshold = 15) {
+    // Assume if has no expires, the token is already expired
     if (!expires.value)
       return true
 
@@ -62,8 +59,8 @@ export function useNuAuth (): NuAuth {
     const now  = new Date()
     const diff = Math.floor((end.getTime() - now.getTime()) / 60_000 /* millisecond in minute */)
 
-    return diff > 0 && diff <= 15
-  })
+    return diff > 0 && diff <= threshold
+  }
 
   async function login (path?: string): Promise<void> {
     const redirect = path ? encodePath(path) : undefined
