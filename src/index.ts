@@ -23,7 +23,7 @@ export interface NuAuth {
    */
   expires: Ref<string | null>,
   /**
-   * Check token is almost expired (15 minutes before Expired-Date)
+   * Check token is almost expired
    * @param threshold {number} threshold before expired, default is 15 minutes
    */
   isAlmostExpired: (threshold?: number) => boolean,

@@ -49,7 +49,7 @@ logout()
 login('/dashboard')
 
 // Check token is almost expired (15 minutes before Expired Date)
-if (isAlmostExpired()) {
+if (isAlmostExpired(15)) {
   // Request new token
   await refresh()
 }
@@ -71,9 +71,13 @@ This module has no configuration, instead this module read enviroment variables 
 | OAUTH_REGISTER           | `false`       | Add params register to Oauth Server                                                   |
 | OAUTH_REDIRECT_WHITELIST | -             | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
 
+See [.env.example](/.env.example) for example
+
 ## Contribution
 
-- Clone this repo
+- Clone this repository
+- Play [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) in the background (really important!)
+- Enable [Corepack](https://github.com/nodejs/corepack) using `corepack enable` (use `npm i -g corepack` for Node.js < 16.10)
 - Run `yarn install`
 - Run `yarn dev:prepare` to generate type stubs.
 - Use `yarn dev` to start [playground](./playground) in development mode.

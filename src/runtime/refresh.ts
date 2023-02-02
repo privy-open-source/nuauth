@@ -22,6 +22,10 @@ export default defineEventHandler(async (event) => {
       expires_at   : getCookie(event, 'session/expired'),
     }).refresh()
 
+    setCookie(event, 'session/token', access.token.access_token)
+    setCookie(event, 'session/refresh-token', access.token.refresh_token)
+    setCookie(event, 'session/expires', access.token.expires_at)
+
     return {
       code   : 200,
       message: 'Ok',
