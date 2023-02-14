@@ -17,6 +17,9 @@ Then, add into `nuxt.config.ts` modules
 ```ts
 export default defineNuxtConfig({
   modules: ['@privyid/nuauth/module'],
+  build: {
+    transpile: ['@privyid/nuauth']
+  }
 })
 ```
 
