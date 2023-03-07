@@ -1,5 +1,5 @@
 import { withQuery, encodePath } from 'ufo'
-import { Ref } from 'vue-demi'
+import { type Ref } from 'vue-demi'
 import {
   useCookie,
   navigateTo,
