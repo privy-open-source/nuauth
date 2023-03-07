@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
     const register = `${import.meta.env.OAUTH_REGISTER}`
     const loginURL = withQuery(authorizeURL, { register })
 
-    await sendRedirect(event, loginURL); return
+    await sendRedirect(event, loginURL)
   } catch (error) {
     return createError({
       statusCode: 500,
