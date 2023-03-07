@@ -4,7 +4,7 @@ import {
   sendRedirect,
   createError,
 } from 'h3'
-import { AuthorizationCode } from 'simple-oauth2'
+import { AuthorizationCode, AuthorizationMethod } from 'simple-oauth2'
 import { withQuery } from 'ufo'
 
 export default defineEventHandler(async (event) => {
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
         secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
       },
       auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
-      options: { authorizationMethod: 'body' },
+      options: { authorizationMethod: AuthorizationMethod.BODY },
     })
 
     const scope = import.meta.env.OAUTH_SCOPE

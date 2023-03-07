@@ -3,7 +3,7 @@ import {
   getCookie,
   createError,
 } from 'h3'
-import { AuthorizationCode } from 'simple-oauth2'
+import { AuthorizationCode, AuthorizationMethod } from 'simple-oauth2'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
         secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
       },
       auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
-      options: { authorizationMethod: 'body' },
+      options: { authorizationMethod: AuthorizationMethod.BODY },
     })
 
     const access = await client.createToken({
@@ -22,9 +22,9 @@ export default defineEventHandler(async (event) => {
       expires_at   : getCookie(event, 'session/expired'),
     }).refresh()
 
-    setCookie(event, 'session/token', access.token.access_token)
-    setCookie(event, 'session/refresh-token', access.token.refresh_token)
-    setCookie(event, 'session/expires', access.token.expires_at)
+    setCookie(event, 'session/token', access.token.access_token as string)
+    setCookie(event, 'session/refresh-token', access.token.refresh_token as string)
+    setCookie(event, 'session/expires', access.token.expires_at as string)
 
     return {
       code   : 200,

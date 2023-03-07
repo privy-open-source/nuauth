@@ -65,14 +65,14 @@ export function useNuAuth (): NuAuth {
     return diff > 0 && diff <= threshold
   }
 
-  function login (path?: string) {
+  function login (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/login', { redirect })
 
     return navigateTo(url, { external: true })
   }
 
-  function logout (path?: string) {
+  function logout (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/logout', { redirect })
 
