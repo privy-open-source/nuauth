@@ -1,7 +1,15 @@
-import { withQuery, encodePath } from 'ufo'
-import { sendRedirect } from 'h3'
-import { Ref } from 'vue-demi'
-import { useCookie, useRequestEvent } from '#imports'
+import {
+  withQuery,
+  encodePath,
+  joinURL,
+} from 'ufo'
+import getURL from 'requrl'
+import { type Ref } from 'vue-demi'
+import {
+  useCookie,
+  useRequestEvent,
+  navigateTo,
+} from '#imports'
 
 interface AuthRefreshResponse {
   code: number,
@@ -12,6 +20,8 @@ interface AuthRefreshResponse {
     expires: string,
   },
 }
+
+type NavigateResult = ReturnType<typeof navigateTo>
 
 export interface NuAuth {
   /**
@@ -31,12 +41,12 @@ export interface NuAuth {
    * Redirect to Login Page
    * @param path Redirect path after login success
    */
-  login: (redirect?: string) => Promise<void>,
+  login: (redirect?: string) => NavigateResult,
   /**
    * Redirect to Logout Page
    * @param path Redirect path after re-login success
    */
-  logout: (redirect?: string) => Promise<void>,
+  logout: (redirect?: string) => NavigateResult,
   /**
    * Request new access-token
    * @returns new access-token
@@ -49,6 +59,9 @@ export function useNuAuth (): NuAuth {
   const refreshToken = useCookie('session/refresh-token')
   const expires      = useCookie('session/expires')
   const event        = useRequestEvent()
+  const config       = useRuntimeConfig()
+  const host         = getURL(event?.node?.req)
+  const baseURL      = joinURL(host, config.app.baseURL)
 
   function isAlmostExpired (threshold = 15) {
     // Assume if has no expires, the token is already expired
@@ -62,24 +75,18 @@ export function useNuAuth (): NuAuth {
     return diff > 0 && diff <= threshold
   }
 
-  async function login (path?: string): Promise<void> {
+  function login (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/login', { redirect })
 
-    if (process.server)
-      await sendRedirect(event, url)
-    else
-      window.location.href = url
+    return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
-  async function logout (path?: string): Promise<void> {
+  function logout (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/logout', { redirect })
 
-    if (process.server)
-      await sendRedirect(event, url)
-    else
-      window.location.href = url
+    return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   async function refresh (): Promise<string> {

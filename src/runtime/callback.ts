@@ -5,7 +5,7 @@ import {
   sendRedirect,
   createError,
 } from 'h3'
-import { AuthorizationCode } from 'simple-oauth2'
+import { AuthorizationCode, AuthorizationMethod } from 'simple-oauth2'
 import { parseURL, decodePath } from 'ufo'
 
 function getHomeURL (redirect?: string): string {
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
         secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
       },
       auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
-      options: { authorizationMethod: 'body' },
+      options: { authorizationMethod: AuthorizationMethod.BODY },
     })
 
     const scope = import.meta.env.OAUTH_SCOPE
@@ -56,9 +56,9 @@ export default defineEventHandler(async (event) => {
       scope,
     })
 
-    setCookie(event, 'session/token', access.token.access_token)
-    setCookie(event, 'session/refresh-token', access.token.refresh_token)
-    setCookie(event, 'session/expires', access.token.expires_at)
+    setCookie(event, 'session/token', access.token.access_token as string)
+    setCookie(event, 'session/refresh-token', access.token.refresh_token as string)
+    setCookie(event, 'session/expires', access.token.expires_at as string)
 
     if (state.enterprise)
       setCookie(event, 'session/enterprise-token', state.enteprise)
