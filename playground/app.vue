@@ -21,6 +21,4 @@ const {
   logout,
   token,
 } = useNuAuth()
-
-if (!token.value) await login()
 </script>

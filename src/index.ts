@@ -1,7 +1,13 @@
-import { withQuery, encodePath } from 'ufo'
+import {
+  withQuery,
+  encodePath,
+  joinURL,
+} from 'ufo'
+import getURL from 'requrl'
 import { type Ref } from 'vue-demi'
 import {
   useCookie,
+  useRequestEvent,
   navigateTo,
 } from '#imports'
 
@@ -52,6 +58,10 @@ export function useNuAuth (): NuAuth {
   const token        = useCookie('session/token')
   const refreshToken = useCookie('session/refresh-token')
   const expires      = useCookie('session/expires')
+  const event        = useRequestEvent()
+  const config       = useRuntimeConfig()
+  const host         = getURL(event?.node?.req)
+  const baseURL      = joinURL(host, config.app.baseURL)
 
   function isAlmostExpired (threshold = 15) {
     // Assume if has no expires, the token is already expired
@@ -69,18 +79,18 @@ export function useNuAuth (): NuAuth {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/login', { redirect })
 
-    return navigateTo(url, { external: true })
+    return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   function logout (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
     const url      = withQuery('/auth/logout', { redirect })
 
-    return navigateTo(url, { external: true })
+    return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   async function refresh (): Promise<string> {
-    const response = await $fetch<AuthRefreshResponse>('/auth/refresh')
+    const response = await $fetch<AuthRefreshResponse>(joinURL(baseURL, '/auth/refresh'))
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token

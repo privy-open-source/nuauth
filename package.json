@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
+    "requrl": "^3.0.2",
     "simple-oauth2": "^5.0.0",
     "ufo": "^1.0.1"
   },
