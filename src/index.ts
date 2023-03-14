@@ -90,7 +90,7 @@ export function useNuAuth (): NuAuth {
   }
 
   async function refresh (): Promise<string> {
-    const response = await $fetch<AuthRefreshResponse>(joinURL(baseURL, '/auth/refresh'))
+    const response = await $fetch<AuthRefreshResponse>('/auth/refresh')
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token
