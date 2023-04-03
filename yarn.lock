@@ -882,7 +882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/schema@npm:3.0.0, @nuxt/schema@npm:^3.0.0":
+"@nuxt/schema@npm:3.0.0":
   version: 3.0.0
   resolution: "@nuxt/schema@npm:3.0.0"
   dependencies:
@@ -902,7 +902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/schema@npm:3.3.3":
+"@nuxt/schema@npm:3.3.3, @nuxt/schema@npm:^3.0.0":
   version: 3.3.3
   resolution: "@nuxt/schema@npm:3.3.3"
   dependencies:
