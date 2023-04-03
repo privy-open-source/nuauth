@@ -5,7 +5,7 @@ import {
   sendRedirect,
   createError,
 } from 'h3'
-import { AuthorizationCode, AuthorizationMethod } from 'simple-oauth2'
+import { AuthorizationCode } from 'simple-oauth2'
 import { parseURL, decodePath } from 'ufo'
 
 function getHomeURL (redirect?: string): string {
@@ -38,14 +38,14 @@ export default defineEventHandler(async (event) => {
         secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
       },
       auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
-      options: { authorizationMethod: AuthorizationMethod.BODY },
+      options: { authorizationMethod: 'body' },
     })
 
     const scope = import.meta.env.OAUTH_SCOPE
       ? `${import.meta.env.OAUTH_SCOPE}`
       : 'public read'
 
-    const state: Record<string, string> = query.state && !Array.isArray(query.state)
+    const state: Record<string, string> = query.state && typeof query.state === 'string'
       ? JSON.parse(query.state)
       : {}
 

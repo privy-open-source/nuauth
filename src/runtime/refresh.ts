@@ -1,9 +1,10 @@
 import {
   defineEventHandler,
   getCookie,
+  setCookie,
   createError,
 } from 'h3'
-import { AuthorizationCode, AuthorizationMethod } from 'simple-oauth2'
+import { AuthorizationCode } from 'simple-oauth2'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
         secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
       },
       auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
-      options: { authorizationMethod: AuthorizationMethod.BODY },
+      options: { authorizationMethod: 'body' },
     })
 
     const access = await client.createToken({

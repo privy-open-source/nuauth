@@ -7,6 +7,9 @@
     <button @click="login()">
       Login
     </button>
+    <button @click="refresh()">
+      Refresh
+    </button>
     <button @click="logout()">
       Logout
     </button>
@@ -20,5 +23,6 @@ const {
   login,
   logout,
   token,
+  refresh,
 } = useNuAuth()
 </script>

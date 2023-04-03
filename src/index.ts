@@ -1,13 +1,15 @@
+/* global $fetch */
 import {
   withQuery,
   encodePath,
   joinURL,
 } from 'ufo'
 import getURL from 'requrl'
-import { type Ref } from 'vue-demi'
+import type { Ref } from 'vue-demi'
 import {
   useCookie,
   useRequestEvent,
+  useRuntimeConfig,
   navigateTo,
 } from '#imports'
 
