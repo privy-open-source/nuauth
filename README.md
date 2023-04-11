@@ -49,7 +49,7 @@ login('/dashboard')
 logout()
 
 // Redirect to logout page, and redirect to /dashboard after success re-login
-login('/dashboard')
+logout('/dashboard')
 
 // Check token is almost expired (15 minutes before Expired Date)
 if (isAlmostExpired(15)) {
