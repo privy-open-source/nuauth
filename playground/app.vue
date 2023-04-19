@@ -1,8 +1,8 @@
 <template>
   <div>
-    NuAuth Playground:
+    <h1>NuAuth Playground</h1>
 
-    <p>Token: {{ token }}</p>
+    <p><b>Token</b>: {{ token }}</p>
 
     <button @click="login()">
       Login

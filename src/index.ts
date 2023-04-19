@@ -5,9 +5,10 @@ import {
   joinURL,
 } from 'ufo'
 import getURL from 'requrl'
+import { getCookie } from 'h3'
 import type { Ref } from 'vue-demi'
 import {
-  useCookie,
+  useState,
   useRequestEvent,
   useRuntimeConfig,
   navigateTo,
@@ -29,16 +30,16 @@ export interface NuAuth {
   /**
    * Access token
    */
-  token: Ref<string | null>,
+  token: Ref<string | null | undefined>,
   /**
    * Expired date
    */
-  expires: Ref<string | null>,
+  expires: Ref<string | null | undefined>,
   /**
    * Check token is almost expired
-   * @param threshold {number} threshold before expired, default is 15 minutes
+   * @param minutes {number} threshold before expired, default is 15 minutes
    */
-  isAlmostExpired: (threshold?: number) => boolean,
+  isAlmostExpired: (minutes?: number) => boolean,
   /**
    * Redirect to Login Page
    * @param path Redirect path after login success
@@ -57,15 +58,16 @@ export interface NuAuth {
 }
 
 export function useNuAuth (): NuAuth {
-  const token        = useCookie('session/token')
-  const refreshToken = useCookie('session/refresh-token')
-  const expires      = useCookie('session/expires')
-  const event        = useRequestEvent()
-  const config       = useRuntimeConfig()
-  const host         = getURL(event?.node?.req)
-  const baseURL      = joinURL(host, config.app.baseURL)
+  const token        = useState<string | undefined>('session/token')
+  const refreshToken = useState<string | undefined>('session/refresh-token')
+  const expires      = useState<string | undefined>('session/expires')
 
-  function isAlmostExpired (threshold = 15) {
+  const event   = useRequestEvent()
+  const config  = useRuntimeConfig()
+  const host    = getURL(event?.node?.req)
+  const baseURL = joinURL(host, config.app.baseURL)
+
+  function isAlmostExpired (minutes = 15) {
     // Assume if has no expires, the token is already expired
     if (!expires.value)
       return true
@@ -74,7 +76,7 @@ export function useNuAuth (): NuAuth {
     const now  = new Date()
     const diff = Math.floor((end.getTime() - now.getTime()) / 60_000 /* millisecond in minute */)
 
-    return diff > 0 && diff <= threshold
+    return diff > 0 && diff <= minutes
   }
 
   function login (path?: string): NavigateResult {
@@ -99,6 +101,12 @@ export function useNuAuth (): NuAuth {
     expires.value      = response.data.expires
 
     return response.data.access_token
+  }
+
+  if (process.server) {
+    token.value        = getCookie(event, 'session/token')
+    refreshToken.value = getCookie(event, 'session/refresh-token')
+    expires.value      = getCookie(event, 'session/expires')
   }
 
   return {

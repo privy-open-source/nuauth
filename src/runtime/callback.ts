@@ -7,11 +7,13 @@ import {
 } from 'h3'
 import { AuthorizationCode } from 'simple-oauth2'
 import { parseURL, decodePath } from 'ufo'
+import { useRuntimeConfig } from '#imports'
+import defu from 'defu'
 
 function getHomeURL (redirect?: string): string {
   try {
     if (redirect) {
-      const whitelist = `${import.meta.env.OAUTH_REDIRECT_WHITELIST || ''}`.split(';')
+      const whitelist = (import.meta.env.OAUTH_REDIRECT_WHITELIST || '').split(';')
       const path      = decodePath(redirect)
       const url       = parseURL(path)
 
@@ -26,39 +28,44 @@ function getHomeURL (redirect?: string): string {
       console.warn(error)
   }
 
-  return `${import.meta.env.OAUTH_HOME || '/'}`
+  return import.meta.env.OAUTH_HOME || '/'
 }
 
 export default defineEventHandler(async (event) => {
   try {
+    const config = useRuntimeConfig()
     const query  = getQuery(event)
     const client = new AuthorizationCode({
       client: {
-        id    : `${import.meta.env.OAUTH_CLIENT_ID}`,
-        secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
+        id    : import.meta.env.OAUTH_CLIENT_ID,
+        secret: import.meta.env.OAUTH_CLIENT_SECRET,
       },
-      auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
+      auth   : { tokenHost: import.meta.env.OAUTH_HOST },
       options: { authorizationMethod: 'body' },
     })
 
-    const scope = import.meta.env.OAUTH_SCOPE
-      ? `${import.meta.env.OAUTH_SCOPE}`
-      : 'public read'
-
-    const state: Record<string, string> = query.state && typeof query.state === 'string'
-      ? JSON.parse(query.state)
-      : {}
+    let state: Record<string, string>
+    try {
+      state = typeof query.state === 'string' ? JSON.parse(query.state) : {}
+    } catch {
+      state = {}
+    }
 
     const homeURL = getHomeURL(state.redirect)
     const access  = await client.getToken({
-      code        : `${query.code as string}`,
-      redirect_uri: `${import.meta.env.OAUTH_REDIRECT_URI}`,
-      scope,
+      code        : query.code as string,
+      redirect_uri: import.meta.env.OAUTH_REDIRECT_URI,
+      scope       : import.meta.env.OAUTH_SCOPE || 'public read',
     })
 
-    setCookie(event, 'session/token', access.token.access_token as string)
-    setCookie(event, 'session/refresh-token', access.token.refresh_token as string)
-    setCookie(event, 'session/expires', access.token.expires_at as string)
+    const token        = access.token.access_token as string
+    const refreshToken = access.token.refresh_token as string
+    const expires      = access.token.expires_at as Date
+    const cookieConfig = defu(config.nuauth.cookie, { expires })
+
+    setCookie(event, 'session/token', token, cookieConfig)
+    setCookie(event, 'session/refresh-token', refreshToken, cookieConfig)
+    setCookie(event, 'session/expires', expires.toISOString(), cookieConfig)
 
     if (state.enterprise)
       setCookie(event, 'session/enterprise-token', state.enteprise)
