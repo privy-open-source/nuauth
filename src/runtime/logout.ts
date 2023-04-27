@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
     state        : query ? JSON.stringify(query) : '{}',
   })
 
-  const cookieConfig: CookieSerializeOptions = config.nuauth.cookie ?? {}
+  const cookieConfig = (config.nuauth.cookie ?? {}) as CookieSerializeOptions
 
   deleteCookie(event, 'session/token', cookieConfig)
   deleteCookie(event, 'session/refresh-token', cookieConfig)

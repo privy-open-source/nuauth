@@ -12,17 +12,18 @@ export interface ModuleOptions {
    * Enable autoImport
    * @default true
    */
-  autoImport?: boolean,
+  autoImport: boolean,
   /**
    * Cookie serialize config
+   * @default
+   * {
+   *   httpOnly: true,
+   *   sameSite: 'lax',
+   *   path    : '/',
+   *   secure  : false,
+   * }
    */
-  cookie?: CookieSerializeOptions,
-}
-
-declare module 'nuxt/schema' {
-  interface RuntimeConfig {
-    nuauth: ModuleOptions,
-  }
+  cookie: CookieSerializeOptions,
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -43,14 +44,14 @@ export default defineNuxtModule<ModuleOptions>({
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.nuauth = defu(nuxt.options.runtimeConfig.nuauth, { cookie: options.cookie }) as ModuleOptions
+    nuxt.options.runtimeConfig.nuauth = defu(nuxt.options.runtimeConfig.nuauth, options) as any
 
     addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })
     addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/callback') })
     addServerHandler({ route: '/auth/refresh', handler: resolve('./runtime/refresh') })
     addServerHandler({ route: '/auth/logout', handler: resolve('./runtime/logout') })
 
-    if (options.autoImport !== false) {
+    if (options.autoImport) {
       addImports({
         name: 'useNuAuth',
         from: resolve('./index'),

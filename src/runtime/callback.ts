@@ -9,6 +9,7 @@ import { AuthorizationCode } from 'simple-oauth2'
 import { parseURL, decodePath } from 'ufo'
 import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
+import type { CookieSerializeOptions } from 'cookie-es'
 
 function getHomeURL (redirect?: string): string {
   try {
@@ -61,7 +62,7 @@ export default defineEventHandler(async (event) => {
     const token        = access.token.access_token as string
     const refreshToken = access.token.refresh_token as string
     const expires      = access.token.expires_at as Date
-    const cookieConfig = defu(config.nuauth.cookie, { expires })
+    const cookieConfig = defu(config.nuauth.cookie, { expires }) as CookieSerializeOptions
 
     setCookie(event, 'session/token', token, cookieConfig)
     setCookie(event, 'session/refresh-token', refreshToken, cookieConfig)
