@@ -1382,6 +1382,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
     "@vue/eslint-config-typescript": ^11.0.2
+    cookie-es: ^0.5.0
+    defu: ^6.1.2
     eslint: ^8.35.0
     eslint-config-standard-with-typescript: ^34.0.0
     eslint-formatter-pretty: ^4.1.0
@@ -1393,6 +1395,7 @@ __metadata:
     eslint-plugin-unicorn: ^46.0.0
     eslint-plugin-varspacing: ^1.2.2
     eslint-plugin-vue: ^9.9.0
+    h3: ^1.6.4
     nuxt: ^3.3.3
     requrl: ^3.0.2
     simple-oauth2: ^5.0.0

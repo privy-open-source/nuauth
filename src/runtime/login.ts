@@ -12,28 +12,20 @@ export default defineEventHandler(async (event) => {
     const query  = getQuery(event)
     const client = new AuthorizationCode({
       client: {
-        id    : `${import.meta.env.OAUTH_CLIENT_ID}`,
-        secret: `${import.meta.env.OAUTH_CLIENT_SECRET}`,
+        id    : import.meta.env.OAUTH_CLIENT_ID,
+        secret: import.meta.env.OAUTH_CLIENT_SECRET,
       },
-      auth   : { tokenHost: `${import.meta.env.OAUTH_HOST}` },
+      auth   : { tokenHost: import.meta.env.OAUTH_HOST },
       options: { authorizationMethod: 'body' },
     })
 
-    const scope = import.meta.env.OAUTH_SCOPE
-      ? `${import.meta.env.OAUTH_SCOPE}`
-      : 'public read'
-
-    const state = query
-      ? JSON.stringify(query)
-      : '{}'
-
     const authorizeURL = client.authorizeURL({
-      redirect_uri: `${import.meta.env.OAUTH_REDIRECT_URI}`,
-      state,
-      scope,
+      redirect_uri: import.meta.env.OAUTH_REDIRECT_URI,
+      scope       : import.meta.env.OAUTH_SCOPE || 'public read',
+      state       : query ? JSON.stringify(query) : '{}',
     })
 
-    const register = `${import.meta.env.OAUTH_REGISTER}`
+    const register = import.meta.env.OAUTH_REGISTER
     const loginURL = withQuery(authorizeURL, { register })
 
     await sendRedirect(event, loginURL)

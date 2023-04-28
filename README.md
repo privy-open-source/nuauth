@@ -60,7 +60,7 @@ if (isAlmostExpired(15)) {
 
 ## Configuration
 
-This module has no configuration, instead this module read enviroment variables directly.
+This module read enviroment variables directly.
 
 | Env Name                 | Default       | Description                                                                           |
 |--------------------------|---------------|---------------------------------------------------------------------------------------|
@@ -74,7 +74,30 @@ This module has no configuration, instead this module read enviroment variables 
 | OAUTH_REGISTER           | `false`       | Add params register to Oauth Server                                                   |
 | OAUTH_REDIRECT_WHITELIST | -             | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
 
-See [.env.example](/.env.example) for example
+👉 See [.env.example](/.env.example) for example
+
+## Cookie Serialize Config
+
+You can change default cookie config. Add this in your `nuxt.config.ts`
+
+```ts
+export default defineNuxtConfig({
+  modules: ['@privyid/nuauth/module'],
+  build: {
+    transpile: ['@privyid/nuauth']
+  },
+  nuauth: {
+    cookie: {
+      httpOnly: true,
+      sameSite: 'none',
+      path    : '/',
+      secure  : true,
+    },
+  }
+})
+```
+
+👉 See [here](https://github.com/jshttp/cookie#options-1) for all cookie options.
 
 ## Contribution
 
