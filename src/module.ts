@@ -36,9 +36,9 @@ export default defineNuxtModule<ModuleOptions>({
     autoImport: false,
     cookie    : {
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       path    : '/',
-      secure  : false,
+      secure  : true,
     },
   },
   setup (options, nuxt) {

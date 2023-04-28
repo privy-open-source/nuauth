@@ -58,9 +58,9 @@ export interface NuAuth {
 }
 
 export function useNuAuth (): NuAuth {
-  const token        = useState<string | undefined>('session/token')
-  const refreshToken = useState<string | undefined>('session/refresh-token')
-  const expires      = useState<string | undefined>('session/expires')
+  const token        = useState<string | undefined>()
+  const refreshToken = useState<string | undefined>()
+  const expires      = useState<string | undefined>()
 
   const event   = useRequestEvent()
   const config  = useRuntimeConfig()
