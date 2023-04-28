@@ -1,5 +1,10 @@
 # NuAuth
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+[![Nuxt][nuxt-src]][nuxt-href]
+
 > Oauth2 Client for Nuxt
 
 ## Compabilities
@@ -111,3 +116,16 @@ export default defineNuxtConfig({
 ## License
 
 [MIT License](/LICENSE)
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/@privyid/nuauth/latest.svg?style=for-the-badge&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/@privyid/nuauth
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/@privyid/nuauth.svg?style=for-the-badge&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/@privyid/nuauth
+
+[license-src]: https://img.shields.io/npm/l/@privyid/nuauth.svg?style=for-the-badge&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/@privyid/nuauth
+
+[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?style=for-the-badge&logo=nuxt.js
+[nuxt-href]: https://nuxt.com
