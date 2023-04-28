@@ -18,9 +18,9 @@ export interface ModuleOptions {
    * @default
    * {
    *   httpOnly: true,
-   *   sameSite: 'lax',
+   *   sameSite: 'none',
    *   path    : '/',
-   *   secure  : false,
+   *   secure  : true,
    * }
    */
   cookie: CookieSerializeOptions,
