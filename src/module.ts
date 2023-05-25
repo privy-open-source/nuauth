@@ -17,10 +17,10 @@ export interface ModuleOptions {
    * Cookie serialize config
    * @default
    * {
-   *   httpOnly: true,
-   *   sameSite: 'none',
+   *   httpOnly: false,
+   *   sameSite: true,
    *   path    : '/',
-   *   secure  : true,
+   *   secure  : false,
    * }
    */
   cookie: CookieSerializeOptions,
@@ -35,16 +35,16 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     autoImport: false,
     cookie    : {
-      httpOnly: true,
-      sameSite: 'none',
+      httpOnly: false,
+      sameSite: true,
       path    : '/',
-      secure  : true,
+      secure  : false,
     },
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.nuauth = defu(nuxt.options.runtimeConfig.nuauth, options) as any
+    nuxt.options.runtimeConfig.nuauth = defu(nuxt.options.runtimeConfig.nuauth, options) as unknown as typeof nuxt.options.runtimeConfig.nuauth
 
     addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })
     addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/callback') })

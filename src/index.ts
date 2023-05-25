@@ -58,11 +58,11 @@ export interface NuAuth {
 }
 
 export function useNuAuth (): NuAuth {
-  const token        = useState<string | undefined>()
-  const refreshToken = useState<string | undefined>()
-  const expires      = useState<string | undefined>()
+  const event        = useRequestEvent()
+  const token        = useState<string | undefined>('tkn', () => getCookie(event, 'session/token'))
+  const refreshToken = useState<string | undefined>('rtkn', () => getCookie(event, 'session/refresh-token'))
+  const expires      = useState<string | undefined>('exp', () => getCookie(event, 'session/expires'))
 
-  const event   = useRequestEvent()
   const config  = useRuntimeConfig()
   const host    = getURL(event?.node?.req)
   const baseURL = joinURL(host, config.app.baseURL)
@@ -101,12 +101,6 @@ export function useNuAuth (): NuAuth {
     expires.value      = response.data.expires
 
     return response.data.access_token
-  }
-
-  if (process.server) {
-    token.value        = getCookie(event, 'session/token')
-    refreshToken.value = getCookie(event, 'session/refresh-token')
-    expires.value      = getCookie(event, 'session/expires')
   }
 
   return {
