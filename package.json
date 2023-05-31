@@ -11,15 +11,15 @@
       "types": "./dist/types.d.ts"
     },
     "./core": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/core.mjs",
+      "require": "./dist/core.cjs",
+      "types": "./dist/core.d.ts"
     }
   },
   "typesVersions": {
     "*": {
       "core": [
-        "./dist/index.d.ts"
+        "./dist/core.d.ts"
       ]
     }
   },
@@ -42,7 +42,9 @@
     "@nuxt/kit": "^3.3.3",
     "cookie-es": "^1.0.0",
     "defu": "^6.1.2",
+    "destr": "^1.2.2",
     "h3": "^1.6.4",
+    "ohash": "^1.1.2",
     "requrl": "^3.0.2",
     "simple-oauth2": "^5.0.0",
     "ufo": "^1.0.1"

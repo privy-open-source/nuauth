@@ -6,6 +6,7 @@ import {
 } from 'ufo'
 import getURL from 'requrl'
 import { getCookie } from 'h3'
+import { hash } from 'ohash'
 import type { Ref } from 'vue-demi'
 import {
   useState,
@@ -57,14 +58,11 @@ export interface NuAuth {
   refresh: () => Promise<string>,
 }
 
-// eslint-disable-next-line unicorn/no-array-reduce
-const getKey = (s: string) => [...s].reduce((a, b) => Math.trunc(((a << 5) - a) + (b.codePointAt(0) ?? 0)), 0).toString(32)
-
 export function useNuAuth (profile = 'oauth'): NuAuth {
   const event        = useRequestEvent()
-  const token        = useState<string | undefined>(getKey(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
-  const refreshToken = useState<string | undefined>(getKey(`${profile}/refresh-token`), () => event && getCookie(event, `${profile}/refresh-token`))
-  const expires      = useState<string | undefined>(getKey(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
+  const token        = useState<string | undefined>(hash(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
+  const refreshToken = useState<string | undefined>(hash(`${profile}/rtoken`), () => event && getCookie(event, `${profile}/refresh-token`))
+  const expires      = useState<string | undefined>(hash(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
 
   const config  = useRuntimeConfig()
   const host    = getURL(event?.node?.req)

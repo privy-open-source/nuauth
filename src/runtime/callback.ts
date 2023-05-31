@@ -7,11 +7,11 @@ import {
 } from 'h3'
 import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
+import destr from 'destr'
 import type { CookieSerializeOptions } from 'cookie-es'
 import {
   getEnv,
   getHomeURL,
-  parseState,
 } from '../core/utils'
 import { getClient } from '../core/client'
 
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
   try {
     const config  = useRuntimeConfig()
     const query   = getQuery(event)
-    const state   = parseState(query.state)
+    const state   = destr(query.state) ?? {}
     const profile = String(state.profile ?? 'oauth')
 
     if (!config.nuauth?.profiles.includes(profile))
@@ -42,16 +42,11 @@ export default defineEventHandler(async (event) => {
     setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
     setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
-    event.context.nuauth = {
-      token,
-      refreshToken,
-      expires: expires.toISOString(),
-    }
-
     if (state.enterprise)
       setCookie(event, `${profile}/enterprise-token`, state.enteprise)
 
-    // Use meta refresh as redirection to fix samesite=strict
+    // Use meta refresh as redirection to fix issue with cookies samesite=strict
+    // See: https://stackoverflow.com/questions/42216700/how-can-i-redirect-after-oauth2-with-samesite-strict-and-still-get-my-cookies
     await send(event,
       `<html>
         <head>

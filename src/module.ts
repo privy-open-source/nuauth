@@ -17,8 +17,8 @@ export interface ModuleOptions {
    * Cookie serialize config
    * @default
    * {
-   *   httpOnly: false,
-   *   sameSite: 'lax',
+   *   httpOnly: true,
+   *   sameSite: true,
    *   path    : '/',
    *   secure  : false,
    * }

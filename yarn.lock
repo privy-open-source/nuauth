@@ -980,6 +980,7 @@ __metadata:
     "@vue/eslint-config-typescript": ^11.0.2
     cookie-es: ^1.0.0
     defu: ^6.1.2
+    destr: ^1.2.2
     eslint: ^8.35.0
     eslint-config-standard-with-typescript: ^34.0.0
     eslint-formatter-pretty: ^5.0.0
@@ -993,6 +994,7 @@ __metadata:
     eslint-plugin-vue: ^9.9.0
     h3: ^1.6.4
     nuxt: ^3.5.1
+    ohash: ^1.1.2
     requrl: ^3.0.2
     simple-oauth2: ^5.0.0
     typescript: ^5.0.0

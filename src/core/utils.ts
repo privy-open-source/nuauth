@@ -21,14 +21,6 @@ export function getHomeURL (profile: string, redirect?: string): string {
   return getEnv(profile, 'HOME') || '/'
 }
 
-export function parseState (state: unknown): Record<string, string> {
-  try {
-    return typeof state === 'string' ? JSON.parse(state) : {}
-  } catch {
-    return {}
-  }
-}
-
 export function getEnv (profile: string, name: string): string {
   return import.meta.env[`${profile.toUpperCase()}_${name.toUpperCase()}`]
 }
