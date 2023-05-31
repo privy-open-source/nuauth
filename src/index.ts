@@ -57,11 +57,14 @@ export interface NuAuth {
   refresh: () => Promise<string>,
 }
 
-export function useNuAuth (): NuAuth {
+// eslint-disable-next-line unicorn/no-array-reduce
+const getKey = (s: string) => [...s].reduce((a, b) => Math.trunc(((a << 5) - a) + (b.codePointAt(0) ?? 0)), 0).toString(32)
+
+export function useNuAuth (profile = 'oauth'): NuAuth {
   const event        = useRequestEvent()
-  const token        = useState<string | undefined>('tkn', () => getCookie(event, 'session/token'))
-  const refreshToken = useState<string | undefined>('rtkn', () => getCookie(event, 'session/refresh-token'))
-  const expires      = useState<string | undefined>('exp', () => getCookie(event, 'session/expires'))
+  const token        = useState<string | undefined>(getKey(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
+  const refreshToken = useState<string | undefined>(getKey(`${profile}/refresh-token`), () => event && getCookie(event, `${profile}/refresh-token`))
+  const expires      = useState<string | undefined>(getKey(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
 
   const config  = useRuntimeConfig()
   const host    = getURL(event?.node?.req)
@@ -81,20 +84,20 @@ export function useNuAuth (): NuAuth {
 
   function login (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
-    const url      = withQuery('/auth/login', { redirect })
+    const url      = withQuery('/auth/login', { redirect, profile })
 
     return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   function logout (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
-    const url      = withQuery('/auth/logout', { redirect })
+    const url      = withQuery('/auth/logout', { redirect, profile })
 
     return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   async function refresh (): Promise<string> {
-    const response = await $fetch<AuthRefreshResponse>('/auth/refresh')
+    const response = await $fetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token

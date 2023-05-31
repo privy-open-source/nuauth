@@ -13,11 +13,20 @@
     <button @click="logout()">
       Logout
     </button>
+
+    <p><b>Gitlab Token</b>: {{ glToken }}</p>
+
+    <button @click="glLogin()">
+      Login
+    </button>
+    <button @click="glRefresh()">
+      Refresh
+    </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useNuAuth } from '@privyid/nuauth'
+import { useNuAuth } from '@privyid/nuauth/core'
 
 const {
   login,
@@ -25,4 +34,10 @@ const {
   token,
   refresh,
 } = useNuAuth()
+
+const {
+  login: glLogin,
+  token: glToken,
+  refresh: glRefresh,
+} = useNuAuth('gitlab')
 </script>

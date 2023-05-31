@@ -2,29 +2,28 @@ import {
   defineEventHandler,
   getCookie,
   setCookie,
-  createError,
+  setResponseStatus,
+  getQuery,
 } from 'h3'
 import defu from 'defu'
-import { AuthorizationCode } from 'simple-oauth2'
 import { useRuntimeConfig } from '#imports'
 import type { CookieSerializeOptions } from 'cookie-es'
+import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
   try {
-    const config = useRuntimeConfig()
-    const client = new AuthorizationCode({
-      client: {
-        id    : import.meta.env.OAUTH_CLIENT_ID,
-        secret: import.meta.env.OAUTH_CLIENT_SECRET,
-      },
-      auth   : { tokenHost: import.meta.env.OAUTH_HOST },
-      options: { authorizationMethod: 'body' },
-    })
+    const config  = useRuntimeConfig()
+    const query   = getQuery(event)
+    const profile = String(query.profile ?? 'oauth')
 
+    if (!config.nuauth?.profiles.includes(profile.toLowerCase()))
+      throw new Error(`Unknown oauth profile: ${profile}`)
+
+    const client = getClient(profile)
     const access = await client.createToken({
-      access_token : getCookie(event, 'session/token'),
-      refresh_token: getCookie(event, 'session/refresh-token'),
-      expires_at   : getCookie(event, 'session/expired'),
+      access_token : getCookie(event, `${profile}/token`),
+      refresh_token: getCookie(event, `${profile}/refresh-token`),
+      expires_at   : getCookie(event, `${profile}/expired`),
     }).refresh()
 
     const token        = access.token.access_token as string
@@ -32,9 +31,9 @@ export default defineEventHandler(async (event) => {
     const expires      = access.token.expires_at as Date
     const cookieConfig = defu(config.nuauth.cookie, { expires }) as CookieSerializeOptions
 
-    setCookie(event, 'session/token', token, cookieConfig)
-    setCookie(event, 'session/refresh-token', refreshToken, cookieConfig)
-    setCookie(event, 'session/expires', expires.toISOString(), cookieConfig)
+    setCookie(event, `${profile}/token`, token, cookieConfig)
+    setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
+    setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
     return {
       code   : 200,
@@ -46,9 +45,11 @@ export default defineEventHandler(async (event) => {
       },
     }
   } catch (error) {
-    return createError({
-      statusCode: 500,
-      message   : (error as Error).message,
-    })
+    setResponseStatus(event, 500)
+
+    return {
+      code   : 500,
+      message: (error as Error).message,
+    }
   }
 })

@@ -18,12 +18,18 @@ export interface ModuleOptions {
    * @default
    * {
    *   httpOnly: false,
-   *   sameSite: true,
+   *   sameSite: 'lax',
    *   path    : '/',
    *   secure  : false,
    * }
    */
   cookie: CookieSerializeOptions,
+  /**
+   * Oauth server profile
+   * @default
+   * ['oauth']
+   */
+  profiles: string[],
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -35,11 +41,12 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     autoImport: false,
     cookie    : {
-      httpOnly: false,
+      httpOnly: true,
       sameSite: true,
       path    : '/',
       secure  : false,
     },
+    profiles: ['oauth'],
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)

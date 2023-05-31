@@ -21,17 +21,14 @@ Then, add into `nuxt.config.ts` modules
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@privyid/nuauth/module'],
-  build: {
-    transpile: ['@privyid/nuauth']
-  }
+  modules: ['@privyid/nuauth'],
 })
 ```
 
 ## Usage
 
 ```ts
-import { useNuAuth } from '@privyid/nuauth'
+import { useNuAuth } from '@privyid/nuauth/core'
 
 const {
   token,
@@ -87,10 +84,7 @@ You can change default cookie config. Add this in your `nuxt.config.ts`
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@privyid/nuauth/module'],
-  build: {
-    transpile: ['@privyid/nuauth']
-  },
+  modules: ['@privyid/nuauth'],
   nuauth: {
     cookie: {
       httpOnly: true,

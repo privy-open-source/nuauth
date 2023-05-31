@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 import { defineNuxtRouteMiddleware } from '#imports'
-import { useNuAuth } from '@privyid/nuauth'
+import { useNuAuth } from '@privyid/nuauth/core'
 
 export default defineNuxtRouteMiddleware((to) => {
   const { token, login } = useNuAuth()
