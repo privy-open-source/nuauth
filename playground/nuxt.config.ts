@@ -4,7 +4,7 @@ import MyModule from '../src/module'
 
 export default defineNuxtConfig({
   modules   : [MyModule],
-  alias     : { '@privyid/nuauth': fileURLToPath(new URL('../src/', import.meta.url)) },
+  alias     : { '@privyid/nuauth/core': fileURLToPath(new URL('../src/core', import.meta.url)) },
   typescript: {
     tsConfig: {
       compilerOptions: {
@@ -13,4 +13,5 @@ export default defineNuxtConfig({
       },
     },
   },
+  nuauth: { profile: { names: ['oauth', 'gitlab'] } },
 })

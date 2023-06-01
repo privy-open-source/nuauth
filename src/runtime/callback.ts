@@ -2,61 +2,35 @@ import {
   defineEventHandler,
   getQuery,
   setCookie,
-  sendRedirect,
-  createError,
+  send,
+  setResponseStatus,
 } from 'h3'
-import { AuthorizationCode } from 'simple-oauth2'
-import { parseURL, decodePath } from 'ufo'
 import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
+import destr from 'destr'
 import type { CookieSerializeOptions } from 'cookie-es'
-
-function getHomeURL (redirect?: string): string {
-  try {
-    if (redirect) {
-      const whitelist = (import.meta.env.OAUTH_REDIRECT_WHITELIST || '').split(';')
-      const path      = decodePath(redirect)
-      const url       = parseURL(path)
-
-      if (url.host && whitelist.includes(url.host))
-        return path
-
-      if (!url.host && url.pathname)
-        return path
-    }
-  } catch (error) {
-    if (import.meta.env.DEV)
-      console.warn(error)
-  }
-
-  return import.meta.env.OAUTH_HOME || '/'
-}
+import {
+  getEnv,
+  getHomeURL,
+} from '../core/utils'
+import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
   try {
-    const config = useRuntimeConfig()
-    const query  = getQuery(event)
-    const client = new AuthorizationCode({
-      client: {
-        id    : import.meta.env.OAUTH_CLIENT_ID,
-        secret: import.meta.env.OAUTH_CLIENT_SECRET,
-      },
-      auth   : { tokenHost: import.meta.env.OAUTH_HOST },
-      options: { authorizationMethod: 'body' },
-    })
+    const config  = useRuntimeConfig()
+    const query   = getQuery(event)
+    const state   = destr(query.state) ?? {}
+    const profile = String(state.profile ?? config.public.defaultProfile ?? 'oauth')
 
-    let state: Record<string, string>
-    try {
-      state = typeof query.state === 'string' ? JSON.parse(query.state) : {}
-    } catch {
-      state = {}
-    }
+    if (!config.nuauth?.profile.names.includes(profile))
+      throw new Error(`Unknown oauth profile: ${profile}`)
 
-    const homeURL = getHomeURL(state.redirect)
+    const client  = getClient(profile)
+    const homeURL = getHomeURL(profile, state.redirect)
     const access  = await client.getToken({
       code        : query.code as string,
-      redirect_uri: import.meta.env.OAUTH_REDIRECT_URI,
-      scope       : import.meta.env.OAUTH_SCOPE || 'public read',
+      redirect_uri: getEnv(profile, 'REDIRECT_URI'),
+      scope       : getEnv(profile, 'SCOPE') || 'public read',
     })
 
     const token        = access.token.access_token as string
@@ -64,18 +38,32 @@ export default defineEventHandler(async (event) => {
     const expires      = access.token.expires_at as Date
     const cookieConfig = defu(config.nuauth.cookie, { expires }) as CookieSerializeOptions
 
-    setCookie(event, 'session/token', token, cookieConfig)
-    setCookie(event, 'session/refresh-token', refreshToken, cookieConfig)
-    setCookie(event, 'session/expires', expires.toISOString(), cookieConfig)
+    setCookie(event, `${profile}/token`, token, cookieConfig)
+    setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
+    setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
     if (state.enterprise)
-      setCookie(event, 'session/enterprise-token', state.enteprise)
+      setCookie(event, `${profile}/enterprise-token`, state.enteprise)
 
-    await sendRedirect(event, homeURL)
+    // Use meta refresh as redirection to fix issue with cookies samesite=strict
+    // See: https://stackoverflow.com/questions/42216700/how-can-i-redirect-after-oauth2-with-samesite-strict-and-still-get-my-cookies
+    await send(event,
+      `<html>
+        <head>
+          <meta http-equiv="refresh" content="0;URL='${homeURL}'"/>
+        </head>
+        <body>
+          <h1>Redirection</h1>
+          <p>Moved to <a href="${homeURL}">${homeURL}</a>.</p>
+        </body>
+      </html>
+      `, 'text/html')
   } catch (error) {
-    return createError({
-      statusCode: 500,
-      message   : (error as Error).message,
-    })
+    setResponseStatus(event, 500)
+
+    return {
+      code   : 500,
+      message: (error as Error).message,
+    }
   }
 })

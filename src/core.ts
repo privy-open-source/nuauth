@@ -6,6 +6,7 @@ import {
 } from 'ufo'
 import getURL from 'requrl'
 import { getCookie } from 'h3'
+import { hash } from 'ohash'
 import type { Ref } from 'vue-demi'
 import {
   useState,
@@ -57,15 +58,15 @@ export interface NuAuth {
   refresh: () => Promise<string>,
 }
 
-export function useNuAuth (): NuAuth {
+export function useNuAuth (profile_?: string): NuAuth {
+  const config       = useRuntimeConfig()
+  const profile      = String(profile_ ?? config.public.defaultProfile ?? 'oauth')
   const event        = useRequestEvent()
-  const token        = useState<string | undefined>('tkn', () => getCookie(event, 'session/token'))
-  const refreshToken = useState<string | undefined>('rtkn', () => getCookie(event, 'session/refresh-token'))
-  const expires      = useState<string | undefined>('exp', () => getCookie(event, 'session/expires'))
-
-  const config  = useRuntimeConfig()
-  const host    = getURL(event?.node?.req)
-  const baseURL = joinURL(host, config.app.baseURL)
+  const token        = useState<string | undefined>(hash(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
+  const refreshToken = useState<string | undefined>(hash(`${profile}/rtoken`), () => event && getCookie(event, `${profile}/refresh-token`))
+  const expires      = useState<string | undefined>(hash(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
+  const host         = getURL(event?.node?.req)
+  const baseURL      = joinURL(host, config.app.baseURL)
 
   function isAlmostExpired (minutes = 15) {
     // Assume if has no expires, the token is already expired
@@ -81,20 +82,20 @@ export function useNuAuth (): NuAuth {
 
   function login (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
-    const url      = withQuery('/auth/login', { redirect })
+    const url      = withQuery('/auth/login', { redirect, profile })
 
     return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   function logout (path?: string): NavigateResult {
     const redirect = path ? encodePath(path) : undefined
-    const url      = withQuery('/auth/logout', { redirect })
+    const url      = withQuery('/auth/logout', { redirect, profile })
 
     return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
   async function refresh (): Promise<string> {
-    const response = await $fetch<AuthRefreshResponse>('/auth/refresh')
+    const response = await $fetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token

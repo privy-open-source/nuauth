@@ -2,37 +2,39 @@ import {
   defineEventHandler,
   getQuery,
   sendRedirect,
-  createError,
+  setResponseStatus,
 } from 'h3'
-import { AuthorizationCode } from 'simple-oauth2'
 import { withQuery } from 'ufo'
+import { useRuntimeConfig } from '#imports'
+import { getEnv } from '../core/utils'
+import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
   try {
-    const query  = getQuery(event)
-    const client = new AuthorizationCode({
-      client: {
-        id    : import.meta.env.OAUTH_CLIENT_ID,
-        secret: import.meta.env.OAUTH_CLIENT_SECRET,
-      },
-      auth   : { tokenHost: import.meta.env.OAUTH_HOST },
-      options: { authorizationMethod: 'body' },
-    })
+    const config  = useRuntimeConfig()
+    const query   = getQuery(event)
+    const profile = String(query.profile ?? config.public.defaultProfile ?? 'oauth')
 
+    if (!config.nuauth?.profile.names.includes(profile))
+      throw new Error(`Unknown oauth profile: ${profile}`)
+
+    const client       = getClient(profile)
     const authorizeURL = client.authorizeURL({
-      redirect_uri: import.meta.env.OAUTH_REDIRECT_URI,
-      scope       : import.meta.env.OAUTH_SCOPE || 'public read',
+      redirect_uri: getEnv(profile, 'REDIRECT_URI'),
+      scope       : getEnv(profile, 'SCOPE') || 'public read',
       state       : query ? JSON.stringify(query) : '{}',
     })
 
-    const register = import.meta.env.OAUTH_REGISTER
+    const register = getEnv(profile, 'REGISTER')
     const loginURL = withQuery(authorizeURL, { register })
 
     await sendRedirect(event, loginURL)
   } catch (error) {
-    return createError({
-      statusCode: 500,
-      message   : (error as Error).message,
-    })
+    setResponseStatus(event, 500)
+
+    return {
+      code   : 500,
+      message: (error as Error).message,
+    }
   }
 })

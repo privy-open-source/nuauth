@@ -7,24 +7,29 @@ import {
 } from 'h3'
 import { withQuery } from 'ufo'
 import { useRuntimeConfig } from '#imports'
+import { getEnv } from '../core/utils'
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig()
-  const query  = getQuery(event)
+  const config  = useRuntimeConfig()
+  const query   = getQuery(event)
+  const profile = String(query.profile ?? config.public.defaultProfile ?? 'oauth')
 
-  const logoutUrl = withQuery(import.meta.env.OAUTH_LOGOUT_URI, {
+  if (!config.nuauth?.profile.names.includes(profile))
+    throw new Error(`Unknown oauth profile: ${profile}`)
+
+  const logoutUrl = withQuery(getEnv(profile, 'LOGOUT_URI'), {
     response_type: 'code',
-    client_id    : import.meta.env.OAUTH_CLIENT_ID,
-    redirect_uri : import.meta.env.OAUTH_REDIRECT_URI,
-    scope        : import.meta.env.OAUTH_SCOPE || 'public read',
+    client_id    : getEnv(profile, 'CLIENT_ID'),
+    redirect_uri : getEnv(profile, 'REDIRECT_URI'),
+    scope        : getEnv(profile, 'SCOPE') || 'public read',
     state        : query ? JSON.stringify(query) : '{}',
   })
 
   const cookieConfig = (config.nuauth.cookie ?? {}) as CookieSerializeOptions
 
-  deleteCookie(event, 'session/token', cookieConfig)
-  deleteCookie(event, 'session/refresh-token', cookieConfig)
-  deleteCookie(event, 'session/expires', cookieConfig)
+  deleteCookie(event, `${profile}/token`, cookieConfig)
+  deleteCookie(event, `${profile}/refresh-token`, cookieConfig)
+  deleteCookie(event, `${profile}/expires`, cookieConfig)
 
   await sendRedirect(event, logoutUrl)
 })
