@@ -58,15 +58,15 @@ export interface NuAuth {
   refresh: () => Promise<string>,
 }
 
-export function useNuAuth (profile = 'oauth'): NuAuth {
+export function useNuAuth (profile_?: string): NuAuth {
+  const config       = useRuntimeConfig()
+  const profile      = String(profile_ ?? config.public.defaultProfile ?? 'oauth')
   const event        = useRequestEvent()
   const token        = useState<string | undefined>(hash(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
   const refreshToken = useState<string | undefined>(hash(`${profile}/rtoken`), () => event && getCookie(event, `${profile}/refresh-token`))
   const expires      = useState<string | undefined>(hash(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
-
-  const config  = useRuntimeConfig()
-  const host    = getURL(event?.node?.req)
-  const baseURL = joinURL(host, config.app.baseURL)
+  const host         = getURL(event?.node?.req)
+  const baseURL      = joinURL(host, config.app.baseURL)
 
   function isAlmostExpired (minutes = 15) {
     // Assume if has no expires, the token is already expired

@@ -13,5 +13,5 @@ export default defineNuxtConfig({
       },
     },
   },
-  nuauth: { profiles: ['oauth', 'gitlab'] },
+  nuauth: { profile: { names: ['oauth', 'gitlab'] } },
 })

@@ -25,11 +25,22 @@ export interface ModuleOptions {
    */
   cookie: CookieSerializeOptions,
   /**
-   * Oauth server profile
-   * @default
-   * ['oauth']
+   *
    */
-  profiles: string[],
+  profile: {
+    /**
+     * Default profile
+     * @default
+     * 'oauth'
+     */
+    default?: string,
+    /**
+     * Oauth server profile's names
+     * @default
+     * ['oauth']
+     */
+    names?: string[],
+  },
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -46,12 +57,16 @@ export default defineNuxtModule<ModuleOptions>({
       path    : '/',
       secure  : false,
     },
-    profiles: ['oauth'],
+    profile: {
+      default: 'oauth',
+      names  : ['oauth'],
+    },
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.nuauth = defu(nuxt.options.runtimeConfig.nuauth, options) as unknown as typeof nuxt.options.runtimeConfig.nuauth
+    nuxt.options.runtimeConfig.nuauth                = defu(nuxt.options.runtimeConfig.nuauth, options) as unknown as typeof nuxt.options.runtimeConfig.nuauth
+    nuxt.options.runtimeConfig.public.defaultProfile = options.profile.default as string
 
     addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })
     addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/callback') })

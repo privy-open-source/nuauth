@@ -12,9 +12,9 @@ import { getEnv } from '../core/utils'
 export default defineEventHandler(async (event) => {
   const config  = useRuntimeConfig()
   const query   = getQuery(event)
-  const profile = String(query.profile ?? 'oauth')
+  const profile = String(query.profile ?? config.public.defaultProfile ?? 'oauth')
 
-  if (!config.nuauth?.profiles.includes(profile))
+  if (!config.nuauth?.profile.names.includes(profile))
     throw new Error(`Unknown oauth profile: ${profile}`)
 
   const logoutUrl = withQuery(getEnv(profile, 'LOGOUT_URI'), {

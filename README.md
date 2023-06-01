@@ -85,7 +85,7 @@ You can change default cookie config. Add this in your `nuxt.config.ts`
 ```ts
 export default defineNuxtConfig({
   modules: ['@privyid/nuauth'],
-  nuauth: {
+  nuauth : {
     cookie: {
       httpOnly: true,
       sameSite: 'none',
@@ -97,6 +97,49 @@ export default defineNuxtConfig({
 ```
 
 👉 See [here](https://github.com/jshttp/cookie#options-1) for all cookie options.
+
+## Multiple Server Profile
+
+Since `0.4.0`, you can target more than one oauth server.
+
+1. Add new profile in your `nuxt.config.ts`
+
+```ts
+export default defineNuxtConfig({
+  modules: ['@privyid/nuauth'],
+  nuauth : {
+    // ...
+    profile: {
+      default: 'oauth',
+      names  : [
+        'oauth',  // default profile
+        'github', // additional profile
+      ]
+    }
+  }
+})
+```
+
+2. Your profile's name will become prefix on [config env](#configuration). ex: If your profile's name `github`, your env will became:
+   - `GITHUB_HOST`
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`,
+   - `GITHUB_REDIRECT_URI`
+   - etc.
+
+3. In your component, explicit the profile you want to use.
+
+```ts
+import { useNuAuth } from '@privyid/nuauth/core'
+
+const {
+  token,
+  isAlmostExpired,
+  login,
+  logout,
+  refresh,
+} = useNuAuth('github')
+```
 
 ## Contribution
 
