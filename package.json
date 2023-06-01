@@ -69,7 +69,7 @@
     "eslint-plugin-unicorn": "^47.0.0",
     "eslint-plugin-varspacing": "^1.2.2",
     "eslint-plugin-vue": "^9.9.0",
-    "nuxt": "^3.5.1",
+    "nuxt": "^3.5.2",
     "typescript": "^5.0.0"
   },
   "publishConfig": {
