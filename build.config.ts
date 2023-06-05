@@ -1,7 +1,13 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  entries    : ['./src/core'],
+  entries: [
+    {
+      input  : './src/core/',
+      builder: 'mkdist',
+      outDir : 'dist/core',
+    },
+  ],
   externals  : ['#imports'],
   declaration: true,
   rollup     : {

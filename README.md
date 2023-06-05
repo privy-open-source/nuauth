@@ -22,6 +22,7 @@ Then, add into `nuxt.config.ts` modules
 ```ts
 export default defineNuxtConfig({
   modules: ['@privyid/nuauth'],
+  build  : { transpile: ['@privyid/nuauth'] },
 })
 ```
 
@@ -84,14 +85,16 @@ You can change default cookie config. Add this in your `nuxt.config.ts`
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@privyid/nuauth'],
+  // ...
   nuauth : {
+    // ...
     cookie: {
       httpOnly: true,
       sameSite: 'none',
       path    : '/',
       secure  : true,
     },
+    // ...
   }
 })
 ```
@@ -106,8 +109,8 @@ Since `0.4.0`, you can target more than one oauth server.
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@privyid/nuauth'],
-  nuauth : {
+  // ...
+  nuauth: {
     // ...
     profile: {
       default: 'oauth',
@@ -116,6 +119,7 @@ export default defineNuxtConfig({
         'github', // additional profile
       ]
     }
+    // ...
   }
 })
 ```

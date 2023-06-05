@@ -50,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
     compatibility: { nuxt: '^3.0.0' },
   },
   defaults: {
-    autoImport: false,
+    autoImport: true,
     cookie    : {
       httpOnly: true,
       sameSite: true,
@@ -76,7 +76,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.autoImport) {
       addImports({
         name: 'useNuAuth',
-        from: resolve('./index'),
+        from: resolve('./core/index'),
       })
     }
   },

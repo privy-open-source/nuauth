@@ -1,6 +1,6 @@
 {
   "name": "@privyid/nuauth",
-  "version": "0.3.1",
+  "version": "0.4.0-rc.2",
   "packageManager": "yarn@3.5.1",
   "license": "MIT",
   "type": "module",
@@ -11,15 +11,14 @@
       "types": "./dist/types.d.ts"
     },
     "./core": {
-      "import": "./dist/core.mjs",
-      "require": "./dist/core.cjs",
-      "types": "./dist/core.d.ts"
+      "import": "./dist/core/index.mjs",
+      "types": "./dist/core/index.d.ts"
     }
   },
   "typesVersions": {
     "*": {
       "core": [
-        "./dist/core.d.ts"
+        "./dist/core/index.d.ts"
       ]
     }
   },
