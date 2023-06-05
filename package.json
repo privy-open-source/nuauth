@@ -51,7 +51,7 @@
   "devDependencies": {
     "@nuxt/module-builder": "^0.4.0",
     "@nuxt/schema": "^3.3.3",
-    "@privyid/eslint-config-persona": "^0.13.0",
+    "@privyid/eslint-config-persona": "^0.14.0",
     "@types/node": "^18.15.11",
     "@types/simple-oauth2": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
