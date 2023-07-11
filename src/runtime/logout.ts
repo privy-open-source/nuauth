@@ -7,7 +7,7 @@ import {
 } from 'h3'
 import { withQuery } from 'ufo'
 import { useRuntimeConfig } from '#imports'
-import { getEnv } from '../core/utils'
+import { getRedirectUri, getEnv } from '../core/utils'
 
 export default defineEventHandler(async (event) => {
   const config  = useRuntimeConfig()
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   const logoutUrl = withQuery(getEnv(profile, 'LOGOUT_URI'), {
     response_type: 'code',
     client_id    : getEnv(profile, 'CLIENT_ID'),
-    redirect_uri : getEnv(profile, 'REDIRECT_URI'),
+    redirect_uri : getRedirectUri(event, profile),
     scope        : getEnv(profile, 'SCOPE') || 'public read',
     state        : query ? JSON.stringify(query) : '{}',
   })
