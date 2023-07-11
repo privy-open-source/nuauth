@@ -6,7 +6,7 @@ import {
 } from 'h3'
 import { withQuery } from 'ufo'
 import { useRuntimeConfig } from '#imports'
-import { getEnv } from '../core/utils'
+import { getEnv, getRedirectUri } from '../core/utils'
 import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
     const client       = getClient(profile)
     const authorizeURL = client.authorizeURL({
-      redirect_uri: getEnv(profile, 'REDIRECT_URI'),
+      redirect_uri: getRedirectUri(event, profile),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
       state       : query ? JSON.stringify(query) : '{}',
     })
