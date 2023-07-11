@@ -65,17 +65,17 @@ if (isAlmostExpired(15)) {
 
 This module read enviroment variables directly.
 
-| Env Name                 | Default       | Description                                                                           |
-|--------------------------|---------------|---------------------------------------------------------------------------------------|
-| OAUTH_HOST               | -             | **(Required)** Oauth server's host                                                    |
-| OAUTH_CLIENT_ID          | -             | **(Required)** Oauth Client ID                                                        |
-| OAUTH_CLIENT_SECRET      | -             | **(Required)** Oauth Client Secret                                                    |
-| OAUTH_REDIRECT_URI       | -             | **(Required)** Oauth Callback URI                                                     |
-| OAUTH_SCOPE              | `public read` | Oauth scope                                                                           |
-| OAUTH_LOGOUT_URI         | -             | Oauth Logout URI                                                                      |
-| OAUTH_HOME               | `/`           | Redirect path after success login                                                     |
-| OAUTH_REGISTER           | `false`       | Add params register to Oauth Server                                                   |
-| OAUTH_REDIRECT_WHITELIST | -             | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
+| Env Name                 | Default          | Description                                                                           |
+|--------------------------|------------------|---------------------------------------------------------------------------------------|
+| OAUTH_HOST               | -                | **(Required)** Oauth server's host                                                    |
+| OAUTH_CLIENT_ID          | -                | **(Required)** Oauth Client ID                                                        |
+| OAUTH_CLIENT_SECRET      | -                | **(Required)** Oauth Client Secret                                                    |
+| OAUTH_REDIRECT_URI       | `/auth/callback` | Oauth Callback URI                                                     |
+| OAUTH_SCOPE              | `public read`    | Oauth scope                                                                           |
+| OAUTH_LOGOUT_URI         | -                | Oauth Logout URI                                                                      |
+| OAUTH_HOME               | `/`              | Redirect path after success login                                                     |
+| OAUTH_REGISTER           | `false`          | Add params register to Oauth Server                                                   |
+| OAUTH_REDIRECT_WHITELIST | -                | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
 
 👉 See [.env.example](/.env.example) for example
 
