@@ -27,13 +27,13 @@ export function getEnv (profile: string, name: string): string {
 }
 
 export function getRedirectUri (event: H3Event, profile: string): string {
-  const redirectUrl = getEnv(profile, 'REDIRECT_URI')
+  const redirectUrl = getEnv(profile, 'REDIRECT_URI') || '/auth/callback'
   const url         = parseURL(redirectUrl)
   const requestUrl  = getRequestURL(event)
 
   const protocol = `${url.protocol ?? requestUrl.protocol}//`
   const host     = `${url.host ?? requestUrl.host}`
-  const path     = `${url.pathname ?? '/auth/callback'}`
+  const path     = `${url.pathname}`
 
   return `${protocol}${host}${path}`
 }
