@@ -85,8 +85,8 @@ jobs:
       - name: Run Prepare
         run: yarn dev:prepare
 
+      - name: Build Package
+        run: yarn build
+
       - name: Run Linter
         run: yarn lint
-
-      - name: Build Docs
-        run: yarn build
