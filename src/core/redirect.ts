@@ -16,11 +16,11 @@ export default function getRedirectPage (url: string) {
 
       <style>
         @keyframes progressbar {
-          from {
+          0% {
             transform: translateX(-75%);
           }
 
-          to {
+          100% {
             transform: translateX(225%);
           }
         }
@@ -42,16 +42,12 @@ export default function getRedirectPage (url: string) {
           border-radius: 9999px;
           height: 4px;
           background: #F3F3F3;
-          position: relative;
           overflow: hidden;
+          isolation: isolate;
         }
 
         .loading__bar {
-          position: absolute;
           border-radius: 9999px;
-          top: 0;
-          left: 0;
-          bottom: 0;
           height: 100%;
           width: 40%;
           background: #0065D1;
