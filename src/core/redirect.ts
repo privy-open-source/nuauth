@@ -1,3 +1,7 @@
+/**
+ * Live demo: https://codepen.io/adenvt/pen/gOQjgyM
+ * @param url redirect url
+ */
 export default function getRedirectPage (url: string) {
   return `
     <!DOCTYPE html>
