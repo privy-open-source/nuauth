@@ -145,6 +145,22 @@ const {
 } = useNuAuth('github')
 ```
 
+## Disable redirection page
+
+To prevent displaying the redirection page, you can set the sameSite attribute of the cookie to `lax` or `none`. 
+
+```js
+export default defineNuxtConfig({
+  // ...
+  nuauth: {
+    // ...
+    cookie: {
+      sameSite: 'lax', // or 'none' for cross-origin cookies
+    }
+    // ...
+  }
+})
+
 ## Contribution
 
 - Clone this repository
