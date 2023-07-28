@@ -70,7 +70,7 @@ This module read enviroment variables directly.
 | OAUTH_HOST               | -                    | **(Required)** Oauth server's host                                                    |
 | OAUTH_CLIENT_ID          | -                    | **(Required)** Oauth Client ID                                                        |
 | OAUTH_CLIENT_SECRET      | -                    | **(Required)** Oauth Client Secret                                                    |
-| OAUTH_REDIRECT_URI       | `/auth/callback`     | Oauth Callback URI                                                     |
+| OAUTH_REDIRECT_URI       | `/auth/callback`     | Oauth Callback URI                                                                    |
 | OAUTH_SCOPE              | `public read`        | Oauth scope                                                                           |
 | OAUTH_LOGOUT_URI         | -                    | Oauth Logout URI                                                                      |
 | OAUTH_HOME               | `/`                  | Redirect path after success login                                                     |
@@ -148,7 +148,7 @@ const {
 
 ## Disable redirection page
 
-To prevent displaying the redirection page, you can set the sameSite attribute of the cookie to `lax` or `none`. 
+To prevent displaying the redirection page, you can set the sameSite attribute of the cookie to `lax` or `none`.
 
 ```js
 export default defineNuxtConfig({
