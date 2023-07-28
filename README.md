@@ -161,6 +161,7 @@ export default defineNuxtConfig({
     // ...
   }
 })
+```
 
 ## Contribution
 
