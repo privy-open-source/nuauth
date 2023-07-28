@@ -1,9 +1,32 @@
+import {
+  type H3Event,
+  send,
+  sendRedirect,
+  getHeader,
+} from 'h3'
+
+import type { CookieSerializeOptions } from 'cookie-es'
+
 /**
- * Live demo: https://codepen.io/adenvt/pen/gOQjgyM
+ * Get redirect page
  * @param url redirect url
  */
-export default function getRedirectPage (url: string) {
-  return `
+export default async function getRedirectPage (
+  event: H3Event,
+  url: string,
+  cookieConfig: CookieSerializeOptions,
+): Promise<void> {
+  const isCookieStrict = cookieConfig.sameSite === 'strict' || cookieConfig.sameSite === true
+
+  const isIframe = getHeader(event, 'sec-fetch-dest') === 'iframe'
+
+  if (isCookieStrict || isIframe) {
+    // Use meta refresh as redirection to fix issue with cookies samesite=strict
+    // See: https://stackoverflow.com/questions/42216700/how-can-i-redirect-after-oauth2-with-samesite-strict-and-still-get-my-cookies
+    // Live demo: https://codepen.io/adenvt/pen/gOQjgyM
+    await send(
+      event,
+      `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -89,5 +112,12 @@ export default function getRedirectPage (url: string) {
       </div>
     </body>
   </html>
-`
+`,
+      'text/html',
+    )
+
+    return
+  }
+
+  await sendRedirect(event, url)
 }

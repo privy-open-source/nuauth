@@ -2,7 +2,6 @@ import {
   defineEventHandler,
   getQuery,
   setCookie,
-  send,
   setResponseStatus,
 } from 'h3'
 import { useRuntimeConfig } from '#imports'
@@ -47,9 +46,7 @@ export default defineEventHandler(async (event) => {
     if (state.enterprise)
       setCookie(event, `${profile}/enterprise-token`, state.enteprise)
 
-    // Use meta refresh as redirection to fix issue with cookies samesite=strict
-    // See: https://stackoverflow.com/questions/42216700/how-can-i-redirect-after-oauth2-with-samesite-strict-and-still-get-my-cookies
-    await send(event, getRedirectPage(homeURL), 'text/html')
+    await getRedirectPage(event, homeURL, cookieConfig)
   } catch (error) {
     setResponseStatus(event, 500)
 
