@@ -3,6 +3,7 @@ import {
   getQuery,
   setCookie,
   setResponseStatus,
+  sendRedirect,
 } from 'h3'
 import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
@@ -28,7 +29,14 @@ export default defineEventHandler(async (event) => {
 
     const client  = getClient(profile)
     const homeURL = getHomeURL(profile, state.redirect)
-    const access  = await client.getToken({
+
+    if (query.errors === 'access_denied') {
+      await sendRedirect(event, getEnv(profile, 'DENIED_REDIRECT') ?? homeURL)
+
+      return
+    }
+
+    const access = await client.getToken({
       code        : query.code as string,
       redirect_uri: getRedirectUri(event, profile),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
