@@ -1106,9 +1106,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@privyid/eslint-config-persona@npm:^0.17.0":
-  version: 0.17.1
-  resolution: "@privyid/eslint-config-persona@npm:0.17.1"
+"@privyid/eslint-config-persona@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "@privyid/eslint-config-persona@npm:0.18.0"
   peerDependencies:
     "@typescript-eslint/eslint-plugin": ">=5.47.0"
     "@typescript-eslint/parser": ">=5.47.0"
@@ -1124,7 +1124,7 @@ __metadata:
     eslint-plugin-unicorn: ">=45.0.2"
     eslint-plugin-varspacing: ">=1.2.2"
     eslint-plugin-vue: ">=9.8.0"
-  checksum: c1bdc26e3082a936ee14dd6858c7d87386b31a63a2869857ca9b2f1050b41e8dd25df1baa1ea165dd79102a1e57e12219cd25600d6a09e230c41a41b76478b4b
+  checksum: 7adbe51dc9bbb01bf4721537614ce841cedc10db849cc58521996327f4d673d5191894fbe3089ad13d90654552c2e651698222c2d39eecf3c598b63f6f03bc80
   languageName: node
   linkType: hard
 
@@ -1135,7 +1135,7 @@ __metadata:
     "@nuxt/kit": ^3.3.3
     "@nuxt/module-builder": ^0.4.0
     "@nuxt/schema": ^3.3.3
-    "@privyid/eslint-config-persona": ^0.17.0
+    "@privyid/eslint-config-persona": ^0.18.0
     "@types/node": ^18.15.11
     "@types/simple-oauth2": ^5.0.4
     "@typescript-eslint/eslint-plugin": ^5.54.1
