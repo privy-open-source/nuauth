@@ -14,7 +14,7 @@ import {
   getHomeURL,
   getRedirectUri,
 } from '../core/utils'
-import getRedirectPage from '../core/redirect'
+import sendRedirectPage from '../core/redirect'
 import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
@@ -52,9 +52,9 @@ export default defineEventHandler(async (event) => {
     setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
     if (state.enterprise)
-      setCookie(event, `${profile}/enterprise-token`, state.enteprise)
+      setCookie(event, `${profile}/enterprise-token`, state.enterprise)
 
-    await getRedirectPage(event, homeURL, cookieConfig)
+    await sendRedirectPage(event, homeURL, cookieConfig)
   } catch (error) {
     setResponseStatus(event, 500)
 
