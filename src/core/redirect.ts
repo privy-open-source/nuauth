@@ -11,11 +11,7 @@ import type { CookieSerializeOptions } from 'cookie-es'
  * Get redirect page
  * @param url redirect url
  */
-export default async function getRedirectPage (
-  event: H3Event,
-  url: string,
-  cookieConfig: CookieSerializeOptions,
-): Promise<void> {
+export default async function sendRedirectPage (event: H3Event, url: string, cookieConfig: CookieSerializeOptions) {
   const isCookieStrict = cookieConfig.sameSite === 'strict' || cookieConfig.sameSite === true
   const isIframe       = getHeader(event, 'sec-fetch-dest') === 'iframe'
 
