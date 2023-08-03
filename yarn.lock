@@ -2979,9 +2979,9 @@ __metadata:
   linkType: hard
 
 "destr@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "destr@npm:2.0.0"
-  checksum: 5439cfc8e4b207a4c77cce89b3490dcb68b8cbea1ea5171958b89ae1a814a8f988e54e259d9dae8ebee64cfc9d658497e96d0a8905b2d243cf49bda36e578850
+  version: 2.0.1
+  resolution: "destr@npm:2.0.1"
+  checksum: 2016d9e83e0a714d587ee2f85b9792a5ebf8dcb20cec133fd16adb898467a16ce8090ff7450bf55aee7b83e6ab53a69008f3b6ee8cc1bc8b04f6f3b99945c36d
   languageName: node
   linkType: hard
 
