@@ -1,9 +1,9 @@
-/* global $fetch */
 import {
   withQuery,
   encodePath,
   joinURL,
 } from 'ufo'
+import { ofetch } from 'ofetch'
 import getURL from 'requrl'
 import { getCookie } from 'h3'
 import { hash } from 'ohash'
@@ -95,7 +95,7 @@ export function useNuAuth (profile_?: string): NuAuth {
   }
 
   async function refresh (): Promise<string> {
-    const response = await $fetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
+    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token

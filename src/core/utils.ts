@@ -1,5 +1,11 @@
-import { type H3Event, getRequestURL } from 'h3'
-import { decodePath, parseURL } from 'ufo'
+import { getRequestURL } from 'h3'
+import { useRequestEvent } from '#imports'
+import { defu } from 'defu'
+import {
+  decodePath,
+  parseURL,
+  stringifyParsedURL,
+} from 'ufo'
 
 export function getHomeURL (profile: string, redirect?: string): string {
   try {
@@ -22,18 +28,27 @@ export function getHomeURL (profile: string, redirect?: string): string {
   return getEnv(profile, 'HOME') || '/'
 }
 
+/**
+ * Get profile's env
+ * @param profile profile name
+ * @param name env name
+ */
 export function getEnv (profile: string, name: string): string {
   return import.meta.env[`${profile.toUpperCase()}_${name.toUpperCase()}`]
 }
 
-export function getRedirectUri (event: H3Event, profile: string): string {
+/**
+ * Get redirect / callback Uri
+ * @param profile
+ */
+export function getRedirectUri (profile: string): string {
+  const event       = useRequestEvent()
   const redirectUrl = getEnv(profile, 'REDIRECT_URI') || '/auth/callback'
   const url         = parseURL(redirectUrl)
   const requestUrl  = getRequestURL(event)
 
-  const protocol = `${url.protocol ?? requestUrl.protocol}//`
-  const host     = `${url.host ?? requestUrl.host}`
-  const path     = `${url.pathname}`
-
-  return `${protocol}${host}${path}`
+  return stringifyParsedURL(defu(url, {
+    protocol: requestUrl.protocol,
+    host    : requestUrl.host,
+  }))
 }

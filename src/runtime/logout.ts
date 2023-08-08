@@ -2,6 +2,7 @@ import type { CookieSerializeOptions } from 'cookie-es'
 import {
   defineEventHandler,
   getQuery,
+  setCookie,
   sendRedirect,
   deleteCookie,
 } from 'h3'
@@ -17,12 +18,13 @@ export default defineEventHandler(async (event) => {
   if (!config.nuauth?.profile.names.includes(profile))
     throw new Error(`Unknown oauth profile: ${profile}`)
 
+  const state     = query ? JSON.stringify(query) : '{}'
   const logoutUrl = withQuery(getEnv(profile, 'LOGOUT_URI'), {
     response_type: 'code',
     client_id    : getEnv(profile, 'CLIENT_ID'),
-    redirect_uri : getRedirectUri(event, profile),
+    redirect_uri : getRedirectUri(profile),
     scope        : getEnv(profile, 'SCOPE') || 'public read',
-    state        : query ? JSON.stringify(query) : '{}',
+    state,
   })
 
   const cookieConfig = (config.nuauth.cookie ?? {}) as CookieSerializeOptions
@@ -30,6 +32,9 @@ export default defineEventHandler(async (event) => {
   deleteCookie(event, `${profile}/token`, cookieConfig)
   deleteCookie(event, `${profile}/refresh-token`, cookieConfig)
   deleteCookie(event, `${profile}/expires`, cookieConfig)
+
+  // Save temp state into cookie
+  setCookie(event, '_state', state)
 
   await sendRedirect(event, logoutUrl)
 })

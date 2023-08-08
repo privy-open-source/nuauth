@@ -1,7 +1,9 @@
 import {
   defineEventHandler,
   getQuery,
+  getCookie,
   setCookie,
+  deleteCookie,
   setResponseStatus,
   sendRedirect,
 } from 'h3'
@@ -21,7 +23,7 @@ export default defineEventHandler(async (event) => {
   try {
     const config  = useRuntimeConfig()
     const query   = getQuery(event)
-    const state   = destr<Record<string, string>>(query.state) ?? {}
+    const state   = destr<Record<string, string>>(query.state ?? getCookie(event, '_state')) ?? {}
     const profile = String(state.profile ?? config.public.defaultProfile ?? 'oauth')
 
     if (!config.nuauth?.profile.names.includes(profile))
@@ -38,7 +40,7 @@ export default defineEventHandler(async (event) => {
 
     const access = await client.getToken({
       code        : query.code as string,
-      redirect_uri: getRedirectUri(event, profile),
+      redirect_uri: getRedirectUri(profile),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
     })
 
@@ -53,6 +55,9 @@ export default defineEventHandler(async (event) => {
 
     if (state.enterprise)
       setCookie(event, `${profile}/enterprise-token`, state.enterprise)
+
+    // Remove temporary state
+    deleteCookie(event, '_state')
 
     await sendRedirectPage(event, homeURL, cookieConfig)
   } catch (error) {

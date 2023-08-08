@@ -1,6 +1,7 @@
 import {
   defineEventHandler,
   getQuery,
+  setCookie,
   sendRedirect,
   setResponseStatus,
 } from 'h3'
@@ -19,14 +20,18 @@ export default defineEventHandler(async (event) => {
       throw new Error(`Unknown oauth profile: ${profile}`)
 
     const client       = getClient(profile)
+    const state        = query ? JSON.stringify(query) : '{}'
     const authorizeURL = client.authorizeURL({
-      redirect_uri: getRedirectUri(event, profile),
+      redirect_uri: getRedirectUri(profile),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
-      state       : query ? JSON.stringify(query) : '{}',
+      state,
     })
 
     const register = getEnv(profile, 'REGISTER')
     const loginURL = withQuery(authorizeURL, { register })
+
+    // Save temp state into cookie
+    setCookie(event, '_state', state)
 
     await sendRedirect(event, loginURL)
   } catch (error) {

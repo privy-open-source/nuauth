@@ -8,8 +8,10 @@ import {
 import type { CookieSerializeOptions } from 'cookie-es'
 
 /**
- * Get redirect page
+ * Redirect to target url with cookie samesite strict protection
+ * @param event H3Event
  * @param url redirect url
+ * @param cookieConfig cookie config
  */
 export default async function sendRedirectPage (event: H3Event, url: string, cookieConfig: CookieSerializeOptions) {
   const isCookieStrict = cookieConfig.sameSite === 'strict' || cookieConfig.sameSite === true
