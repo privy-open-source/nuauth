@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     const client       = getClient(profile)
     const state        = query ? JSON.stringify(query) : '{}'
     const authorizeURL = client.authorizeURL({
-      redirect_uri: getRedirectUri(profile),
+      redirect_uri: getRedirectUri(profile, event),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
       state,
     })
