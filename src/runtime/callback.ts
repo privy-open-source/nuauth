@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
 
     const access = await client.getToken({
       code        : query.code as string,
-      redirect_uri: getRedirectUri(profile),
+      redirect_uri: getRedirectUri(profile, event),
       scope       : getEnv(profile, 'SCOPE') || 'public read',
     })
 

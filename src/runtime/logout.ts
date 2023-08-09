@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   const logoutUrl = withQuery(getEnv(profile, 'LOGOUT_URI'), {
     response_type: 'code',
     client_id    : getEnv(profile, 'CLIENT_ID'),
-    redirect_uri : getRedirectUri(profile),
+    redirect_uri : getRedirectUri(profile, event),
     scope        : getEnv(profile, 'SCOPE') || 'public read',
     state,
   })

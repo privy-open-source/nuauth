@@ -1,5 +1,4 @@
-import { getRequestURL } from 'h3'
-import { useRequestEvent } from '#imports'
+import { getRequestURL, type H3Event } from 'h3'
 import { defu } from 'defu'
 import {
   decodePath,
@@ -41,8 +40,7 @@ export function getEnv (profile: string, name: string): string {
  * Get redirect / callback Uri
  * @param profile
  */
-export function getRedirectUri (profile: string): string {
-  const event       = useRequestEvent()
+export function getRedirectUri (profile: string, event: H3Event): string {
   const redirectUrl = getEnv(profile, 'REDIRECT_URI') || '/auth/callback'
   const url         = parseURL(redirectUrl)
   const requestUrl  = getRequestURL(event)
