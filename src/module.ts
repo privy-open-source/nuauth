@@ -2,6 +2,7 @@ import { defu } from 'defu'
 import type { CookieSerializeOptions } from 'cookie-es'
 import {
   addImports,
+  addRouteMiddleware,
   addServerHandler,
   createResolver,
   defineNuxtModule,
@@ -41,6 +42,11 @@ export interface ModuleOptions {
      */
     names?: string[],
   },
+  /**
+   * Add guard middleware
+   * @default true
+   */
+  middleware?: boolean,
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -61,6 +67,7 @@ export default defineNuxtModule<ModuleOptions>({
       default: 'oauth',
       names  : ['oauth'],
     },
+    middleware: true,
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -77,6 +84,14 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({
         name: 'useNuAuth',
         from: resolve('./core/index'),
+      })
+    }
+
+    if (options.middleware) {
+      addRouteMiddleware({
+        global: true,
+        name  : 'nuauth',
+        path  : resolve('./runtime/middleware'),
       })
     }
   },

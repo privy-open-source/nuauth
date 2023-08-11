@@ -58,9 +58,9 @@ export interface NuAuth {
   refresh: () => Promise<string>,
 }
 
-export function useNuAuth (profile_?: string): NuAuth {
+export function useNuAuth (authProfile?: string): NuAuth {
   const config       = useRuntimeConfig()
-  const profile      = String(profile_ ?? config.public.defaultProfile ?? 'oauth')
+  const profile      = String(authProfile ?? config.public.defaultProfile ?? 'oauth')
   const event        = useRequestEvent()
   const token        = useState<string | undefined>(hash(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
   const refreshToken = useState<string | undefined>(hash(`${profile}/rtoken`), () => event && getCookie(event, `${profile}/refresh-token`))
