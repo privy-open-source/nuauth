@@ -1,6 +1,6 @@
 {
   "name": "@privyid/nuauth",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "packageManager": "yarn@3.6.1",
   "license": "MIT",
   "type": "module",
