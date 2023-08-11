@@ -163,6 +163,29 @@ export default defineNuxtConfig({
 })
 ```
 
+## Middleware Guard
+
+Since `0.7.0`, NuAuth include global middleware which redirect to login page if user not authenticated.
+If you want disabled it in some page, you can use set meta page `auth` to `false`.
+
+```vue
+<script setup lang="ts">
+  import { definePageMeta } from '#imports'
+
+  definePageMeta({ auth: false })
+</script>
+```
+
+Or you can set auth profile using it
+
+```vue
+<script setup lang="ts">
+  import { definePageMeta } from '#imports'
+
+  definePageMeta({ auth: 'github' })
+</script>
+```
+
 ## Contribution
 
 - Clone this repository
