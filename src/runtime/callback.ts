@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     const state   = destr<Record<string, string>>(query.state ?? getCookie(event, '_state')) ?? {}
     const profile = String(state.profile ?? config.public.defaultProfile ?? 'oauth')
 
-    if (!config.nuauth?.profile.names.includes(profile))
+    if (!config.nuauth?.profile.names?.includes(profile))
       throw new Error(`Unknown oauth profile: ${profile}`)
 
     const client  = getClient(profile)

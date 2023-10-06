@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     const query   = getQuery(event)
     const profile = String(query.profile ?? config.public.defaultProfile ?? 'oauth')
 
-    if (!config.nuauth?.profile.names.includes(profile))
+    if (!config.nuauth?.profile.names?.includes(profile))
       throw new Error(`Unknown oauth profile: ${profile}`)
 
     const client       = getClient(profile)

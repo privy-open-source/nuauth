@@ -49,6 +49,14 @@ export interface ModuleOptions {
   middleware?: boolean,
 }
 
+export interface ModuleRuntimeConfig {
+  nuauth: ModuleOptions,
+}
+
+export interface ModulePublicRuntimeConfig {
+  defaultProfile: string,
+}
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name         : '@privyid/nuauth',
@@ -72,13 +80,14 @@ export default defineNuxtModule<ModuleOptions>({
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.nuauth                = defu(nuxt.options.runtimeConfig.nuauth, options) as unknown as typeof nuxt.options.runtimeConfig.nuauth
+    nuxt.options.runtimeConfig.nuauth                = defu(nuxt.options.runtimeConfig.nuauth, options)
     nuxt.options.runtimeConfig.public.defaultProfile = options.profile.default as string
 
     addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })
     addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/callback') })
     addServerHandler({ route: '/auth/refresh', handler: resolve('./runtime/refresh') })
     addServerHandler({ route: '/auth/logout', handler: resolve('./runtime/logout') })
+    addServerHandler({ route: '/auth/transfer', handler: resolve('./runtime/transfer') })
 
     if (options.autoImport) {
       addImports({

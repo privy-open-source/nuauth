@@ -1,14 +1,14 @@
 import {
   defineEventHandler,
-  getCookie,
+  getQuery,
   setCookie,
   setResponseStatus,
-  getQuery,
 } from 'h3'
-import defu from 'defu'
 import { useRuntimeConfig } from '#imports'
+import defu from 'defu'
 import type { CookieSerializeOptions } from 'cookie-es'
-import { getClient } from '../core/client'
+import { getHomeURL } from '../core/utils'
+import sendRedirectPage from '../core/redirect'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -19,31 +19,20 @@ export default defineEventHandler(async (event) => {
     if (!config.nuauth?.profile.names?.includes(profile))
       throw new Error(`Unknown oauth profile: ${profile}`)
 
-    const client = getClient(profile)
-    const access = await client.createToken({
-      access_token : getCookie(event, `${profile}/token`),
-      refresh_token: getCookie(event, `${profile}/refresh-token`),
-      expires_at   : getCookie(event, `${profile}/expired`),
-    }).refresh()
-
-    const token        = access.token.access_token as string
-    const refreshToken = access.token.refresh_token as string
-    const expires      = access.token.expires_at as Date
+    const homeURL      = getHomeURL(profile, query.redirect as string)
+    const token        = query.token as string
+    const refreshToken = query.refreshToken as string
+    const expires      = new Date(query.expires as string)
     const cookieConfig = defu(config.nuauth.cookie, { expires }) as CookieSerializeOptions
 
     setCookie(event, `${profile}/token`, token, cookieConfig)
     setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
     setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
-    return {
-      code   : 200,
-      message: 'Ok',
-      data   : {
-        access_token : access.token.access_token,
-        refresh_token: access.token.refresh_token,
-        expires      : access.token.expires_at,
-      },
-    }
+    if (query.enterprise)
+      setCookie(event, `${profile}/enterprise-token`, query.enterprise as string)
+
+    await sendRedirectPage(event, homeURL, cookieConfig)
   } catch (error) {
     setResponseStatus(event, 500)
 

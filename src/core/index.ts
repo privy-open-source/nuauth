@@ -52,6 +52,12 @@ export interface NuAuth {
    */
   logout: (redirect?: string) => NavigateResult,
   /**
+   * Transfer credential to another web
+   * @param targetURL Target website's url
+   * @param path Redirect path after re-login success
+   */
+  transfer: (targetURL: string, redirect?: string) => NavigateResult,
+  /**
    * Request new access-token
    * @returns new access-token
    */
@@ -94,6 +100,19 @@ export function useNuAuth (authProfile?: string): NuAuth {
     return navigateTo(joinURL(baseURL, url), { external: true })
   }
 
+  function transfer (targetURL: string, path?: string): NavigateResult {
+    const redirect = path ? encodePath(path) : undefined
+    const url      = withQuery('/auth/transfer', {
+      redirect,
+      profile,
+      token       : token.value,
+      refreshToken: refreshToken.value,
+      expires     : expires.value,
+    })
+
+    return navigateTo(joinURL(targetURL, url), { external: true })
+  }
+
   async function refresh (): Promise<string> {
     const response = await ofetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
 
@@ -110,6 +129,7 @@ export function useNuAuth (authProfile?: string): NuAuth {
     isAlmostExpired,
     login,
     logout,
+    transfer,
     refresh,
   }
 }

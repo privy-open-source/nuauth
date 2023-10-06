@@ -1,4 +1,3 @@
-import type { CookieSerializeOptions } from 'cookie-es'
 import {
   defineEventHandler,
   getQuery,
@@ -15,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const query   = getQuery(event)
   const profile = String(query.profile ?? config.public.defaultProfile ?? 'oauth')
 
-  if (!config.nuauth?.profile.names.includes(profile))
+  if (!config.nuauth?.profile.names?.includes(profile))
     throw new Error(`Unknown oauth profile: ${profile}`)
 
   const state     = query ? JSON.stringify(query) : '{}'
@@ -27,7 +26,7 @@ export default defineEventHandler(async (event) => {
     state,
   })
 
-  const cookieConfig = (config.nuauth.cookie ?? {}) as CookieSerializeOptions
+  const cookieConfig = config.nuauth.cookie ?? {}
 
   deleteCookie(event, `${profile}/token`, cookieConfig)
   deleteCookie(event, `${profile}/refresh-token`, cookieConfig)
