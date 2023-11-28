@@ -6678,23 +6678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"h3@npm:^1.6.4, h3@npm:^1.8.1":
-  version: 1.8.2
-  resolution: "h3@npm:1.8.2"
-  dependencies:
-    cookie-es: "npm:^1.0.0"
-    defu: "npm:^6.1.2"
-    destr: "npm:^2.0.1"
-    iron-webcrypto: "npm:^0.10.1"
-    radix3: "npm:^1.1.0"
-    ufo: "npm:^1.3.0"
-    uncrypto: "npm:^0.1.3"
-    unenv: "npm:^1.7.4"
-  checksum: 4f0cf722b05c78394ee251f093ac68fffdbc4586b5e81b741f849b2ac4e031b901ed6f396dd6d5dd97902e9e6b6b82441516eb8b7fe3bcba37cc304ccb40c99f
-  languageName: node
-  linkType: hard
-
-"h3@npm:^1.8.2, h3@npm:^1.9.0":
+"h3@npm:^1.6.4, h3@npm:^1.8.1, h3@npm:^1.8.2, h3@npm:^1.9.0":
   version: 1.9.0
   resolution: "h3@npm:1.9.0"
   dependencies:
@@ -7070,13 +7054,6 @@ __metadata:
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
   checksum: 8d186cc5585f57372847ae29b6eba258c68862055e18a75cc4933327232cb5c107f89800ce29715d542eef2c254fbb68b382e780a7414f9ee7caf60b7a473958
-  languageName: node
-  linkType: hard
-
-"iron-webcrypto@npm:^0.10.1":
-  version: 0.10.1
-  resolution: "iron-webcrypto@npm:0.10.1"
-  checksum: c18f63108b33e5b104141453204c965c1b6bc2c841fbd6591fcd8bd062f2ddc9fff86c41edd7d183cf79c36f5fec72f7315f57189ac656cc1fb8234960a7f1fc
   languageName: node
   linkType: hard
 
