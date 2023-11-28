@@ -4,6 +4,7 @@ import {
   decodePath,
   parseURL,
   stringifyParsedURL,
+  isScriptProtocol,
 } from 'ufo'
 
 export function getHomeURL (profile: string, redirect?: string): string {
@@ -13,11 +14,13 @@ export function getHomeURL (profile: string, redirect?: string): string {
       const path      = decodePath(redirect)
       const url       = parseURL(path)
 
-      if (url.host && whitelist.includes(url.host))
-        return path
+      if (!isScriptProtocol(url.protocol)) {
+        if (url.host && whitelist.includes(url.host))
+          return path
 
-      if (!url.host && url.pathname)
-        return path
+        if (!url.host && url.pathname)
+          return path
+      }
     }
   } catch (error) {
     if (import.meta.env.DEV)
