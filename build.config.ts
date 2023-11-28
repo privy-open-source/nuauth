@@ -7,6 +7,10 @@ export default defineBuildConfig({
       builder: 'mkdist',
       outDir : 'dist/core',
     },
+    {
+      input : './src/utils.ts',
+      outDir: 'dist/',
+    },
   ],
   externals  : ['#imports'],
   declaration: true,

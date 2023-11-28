@@ -7,6 +7,7 @@ import {
   createResolver,
   defineNuxtModule,
 } from '@nuxt/kit'
+import type { RequiredDeep } from 'type-fest'
 
 export interface ModuleOptions {
   /**
@@ -49,6 +50,14 @@ export interface ModuleOptions {
   middleware?: boolean,
 }
 
+export interface ModulePublicRuntimeConfig {
+  defaultProfile: string,
+}
+
+export interface ModuleRuntimeConfig {
+  nuauth: RequiredDeep<ModuleOptions>,
+}
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name         : '@privyid/nuauth',
@@ -72,7 +81,7 @@ export default defineNuxtModule<ModuleOptions>({
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.runtimeConfig.nuauth                = defu(nuxt.options.runtimeConfig.nuauth, options) as unknown as typeof nuxt.options.runtimeConfig.nuauth
+    nuxt.options.runtimeConfig.nuauth                = defu(nuxt.options.runtimeConfig.nuauth, options)
     nuxt.options.runtimeConfig.public.defaultProfile = options.profile.default as string
 
     addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })

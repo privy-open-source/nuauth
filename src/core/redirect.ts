@@ -4,6 +4,7 @@ import {
   sendRedirect,
   getHeader,
 } from 'h3'
+import { escape } from 'html-escaper'
 
 import type { CookieSerializeOptions } from 'cookie-es'
 
@@ -27,7 +28,7 @@ export default async function sendRedirectPage (event: H3Event, url: string, coo
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="refresh" content="0;URL='${url}'" />
+        <meta http-equiv="refresh" content="0;URL='${escape(url)}'" />
 
         <title>Processing...</title>
 
@@ -102,7 +103,7 @@ export default async function sendRedirectPage (event: H3Event, url: string, coo
             <div class="loading">
               <div class="loading__bar"></div>
             </div>
-            <p>Please wait a while. If you are not redirect automatically, <a href="${url}">click here</a>.</p>
+            <p>Please wait a while. If you are not redirect automatically, <a href="${escape(url)}">click here</a>.</p>
           </div>
         </div>
       </body>
