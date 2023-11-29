@@ -95,7 +95,7 @@ export function useNuAuth (authProfile?: string): NuAuth {
   }
 
   async function refresh (): Promise<string> {
-    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', { query: { profile } })
+    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', { baseURL, query: { profile } })
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token
