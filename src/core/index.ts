@@ -13,6 +13,7 @@ import {
   useRequestEvent,
   useRuntimeConfig,
   navigateTo,
+  useRequestHeaders,
 } from '#imports'
 
 interface AuthRefreshResponse {
@@ -62,6 +63,7 @@ export function useNuAuth (authProfile?: string): NuAuth {
   const config       = useRuntimeConfig()
   const profile      = String(authProfile ?? config.public.defaultProfile ?? 'oauth')
   const event        = useRequestEvent()
+  const headers      = useRequestHeaders()
   const token        = useState<string | undefined>(hash(`${profile}/token`), () => event && getCookie(event, `${profile}/token`))
   const refreshToken = useState<string | undefined>(hash(`${profile}/rtoken`), () => event && getCookie(event, `${profile}/refresh-token`))
   const expires      = useState<string | undefined>(hash(`${profile}/expires`), () => event && getCookie(event, `${profile}/expires`))
@@ -95,7 +97,11 @@ export function useNuAuth (authProfile?: string): NuAuth {
   }
 
   async function refresh (): Promise<string> {
-    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', { baseURL, query: { profile } })
+    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', {
+      baseURL,
+      headers,
+      query: { profile },
+    })
 
     token.value        = response.data.access_token
     refreshToken.value = response.data.refresh_token
