@@ -1,11 +1,13 @@
-import { getRequestURL, type H3Event } from 'h3'
-import { defu } from 'defu'
+import { type H3Event } from 'h3'
 import {
   decodePath,
   parseURL,
-  stringifyParsedURL,
   isScriptProtocol,
+  joinURL,
+  withBase,
 } from 'ufo'
+import { useRuntimeConfig } from '#imports'
+import getURL from 'requrl'
 
 export function getHomeURL (profile: string, redirect?: string): string {
   try {
@@ -31,6 +33,17 @@ export function getHomeURL (profile: string, redirect?: string): string {
 }
 
 /**
+ * Get current baseUrl
+ * @param event H3Event
+ */
+export function getBase (event: H3Event) {
+  const config  = useRuntimeConfig()
+  const baseURL = getURL(event.node.req)
+
+  return joinURL(baseURL, config.app.baseURL)
+}
+
+/**
  * Get profile's env
  * @param profile profile name
  * @param name env name
@@ -44,12 +57,8 @@ export function getEnv (profile: string, name: string): string {
  * @param profile
  */
 export function getRedirectUri (profile: string, event: H3Event): string {
+  const baseURL     = getBase(event)
   const redirectUrl = getEnv(profile, 'REDIRECT_URI') || '/auth/callback'
-  const url         = parseURL(redirectUrl)
-  const requestUrl  = getRequestURL(event)
 
-  return stringifyParsedURL(defu(url, {
-    protocol: requestUrl.protocol,
-    host    : requestUrl.host,
-  }))
+  return withBase(redirectUrl, baseURL)
 }

@@ -12,12 +12,14 @@ import defu from 'defu'
 import destr from 'destr'
 import type { CookieSerializeOptions } from 'cookie-es'
 import {
+  getBase,
   getEnv,
   getHomeURL,
   getRedirectUri,
 } from '../core/utils'
 import sendRedirectPage from '../core/redirect'
 import { getClient } from '../core/client'
+import { withBase } from 'ufo'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -30,10 +32,13 @@ export default defineEventHandler(async (event) => {
       throw new Error(`Unknown oauth profile: ${profile}`)
 
     const client  = getClient(profile)
+    const baseURL = getBase(event)
     const homeURL = getHomeURL(profile, state.redirect)
 
     if (query.errors === 'access_denied') {
-      await sendRedirect(event, getEnv(profile, 'DENIED_REDIRECT') ?? homeURL)
+      const deniedURL = getEnv(profile, 'DENIED_REDIRECT') || homeURL
+
+      await sendRedirect(event, withBase(deniedURL, baseURL))
 
       return
     }
@@ -59,7 +64,7 @@ export default defineEventHandler(async (event) => {
     // Remove temporary state
     deleteCookie(event, '_state')
 
-    await sendRedirectPage(event, homeURL, cookieConfig)
+    await sendRedirectPage(event, withBase(homeURL, baseURL), cookieConfig)
   } catch (error) {
     setResponseStatus(event, 500)
 
