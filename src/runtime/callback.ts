@@ -58,8 +58,12 @@ export default defineEventHandler(async (event) => {
     setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
     setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
 
-    if (state.enterprise)
-      setCookie(event, `${profile}/enterprise-token`, state.enterprise)
+    if (typeof state.enterprise === 'string') {
+      if (state.enterprise)
+        setCookie(event, `${profile}/enterprise-token`, state.enterprise)
+      else
+        deleteCookie(event, `${profile}/enterprise-token`)
+    }
 
     // Remove temporary state
     deleteCookie(event, '_state')
