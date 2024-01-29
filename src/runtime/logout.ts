@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     client_id    : getEnv(profile, 'CLIENT_ID'),
     redirect_uri : getRedirectUri(profile, event),
     scope        : getEnv(profile, 'SCOPE') || 'public read',
+    register     : getEnv(profile, 'REGISTER'),
     state,
   })
 
