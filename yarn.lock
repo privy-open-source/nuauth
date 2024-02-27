@@ -4696,6 +4696,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crossws@npm:^0.2.2":
+  version: 0.2.4
+  resolution: "crossws@npm:0.2.4"
+  peerDependencies:
+    uWebSockets.js: "*"
+  peerDependenciesMeta:
+    uWebSockets.js:
+      optional: true
+  checksum: 10c0/b950c64d36f3f11fdb8e0faf3107598660d89d77eb860e68b535fe6acba9f0f2f0507cc7250bd219a3ef2fe08718db91b591e6912b7324fcfc8fd1b8d9f78c96
+  languageName: node
+  linkType: hard
+
 "css-declaration-sorter@npm:^7.1.1":
   version: 7.1.1
   resolution: "css-declaration-sorter@npm:7.1.1"
@@ -6839,19 +6851,20 @@ __metadata:
   linkType: hard
 
 "h3@npm:^1.10.2, h3@npm:^1.6.4, h3@npm:^1.8.1, h3@npm:^1.8.2, h3@npm:^1.9.0":
-  version: 1.10.2
-  resolution: "h3@npm:1.10.2"
+  version: 1.11.1
+  resolution: "h3@npm:1.11.1"
   dependencies:
     cookie-es: "npm:^1.0.0"
+    crossws: "npm:^0.2.2"
     defu: "npm:^6.1.4"
-    destr: "npm:^2.0.2"
+    destr: "npm:^2.0.3"
     iron-webcrypto: "npm:^1.0.0"
     ohash: "npm:^1.1.3"
     radix3: "npm:^1.1.0"
-    ufo: "npm:^1.3.2"
+    ufo: "npm:^1.4.0"
     uncrypto: "npm:^0.1.3"
     unenv: "npm:^1.9.0"
-  checksum: 10c0/234ccf81066e9c67f2961f5e23e74ca88875641ee888b56e5d277f8b1bbb037adbbba356cd32a430900b10a0c643caba78d6d81cd3230c0639d9939de45c875b
+  checksum: 10c0/bd02bfae536a0facb9ddcd85bd51ad16264ea6fd331a548540a0846e426348449fcbcb10b0fa08673cd1d9c60e6ff5d8f56e7ec2e1ee43fda460d8c16866cbfa
   languageName: node
   linkType: hard
 
