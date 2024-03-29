@@ -4743,9 +4743,9 @@ __metadata:
   linkType: hard
 
 "cookie-es@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "cookie-es@npm:1.0.0"
-  checksum: 10c0/49fb5d5d050e34b5b5f6e31b47d28364d149a31322994568a826a8d137f36792f0365cedc587ab880a1826db41f644d349930523d980f2a0ac3608d63db9263b
+  version: 1.1.0
+  resolution: "cookie-es@npm:1.1.0"
+  checksum: 10c0/27f1057b05eb42dca539a80cf45b8f9d5bacf35482690d756025447810dcd669e0cd13952a063a43e47a4e6fd7400745defedc97479a4254019f0bdb5c200341
   languageName: node
   linkType: hard
 
