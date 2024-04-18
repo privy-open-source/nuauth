@@ -2367,16 +2367,16 @@ __metadata:
     cookie-es: "npm:^1.0.0"
     defu: "npm:^6.1.2"
     destr: "npm:^2.0.0"
-    eslint: "npm:^8.35.0"
-    eslint-config-standard-with-typescript: "npm:^35.0.0"
-    eslint-formatter-pretty: "npm:^5.0.0"
-    eslint-plugin-align-assignments: "npm:^1.1.2"
-    eslint-plugin-import: "npm:^2.27.5"
-    eslint-plugin-n: "npm:^14.0.0"
-    eslint-plugin-promise: "npm:^6.1.1"
-    eslint-plugin-unicorn: "npm:^47.0.0"
-    eslint-plugin-varspacing: "npm:^1.2.2"
-    eslint-plugin-vue: "npm:^9.9.0"
+    eslint: "npm:8.57.0"
+    eslint-config-standard-with-typescript: "npm:35.0.0"
+    eslint-formatter-pretty: "npm:5.0.0"
+    eslint-plugin-align-assignments: "npm:1.1.2"
+    eslint-plugin-import: "npm:2.29.1"
+    eslint-plugin-n: "npm:14.0.0"
+    eslint-plugin-promise: "npm:6.1.1"
+    eslint-plugin-unicorn: "npm:47.0.0"
+    eslint-plugin-varspacing: "npm:1.2.2"
+    eslint-plugin-vue: "npm:9.24.0"
     h3: "npm:^1.6.4"
     html-escaper: "npm:^3.0.3"
     nuxt: "npm:^3.5.2"
@@ -5779,7 +5779,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-standard-with-typescript@npm:^35.0.0":
+"eslint-config-standard-with-typescript@npm:35.0.0":
   version: 35.0.0
   resolution: "eslint-config-standard-with-typescript@npm:35.0.0"
   dependencies:
@@ -5808,7 +5808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-formatter-pretty@npm:^5.0.0":
+"eslint-formatter-pretty@npm:5.0.0":
   version: 5.0.0
   resolution: "eslint-formatter-pretty@npm:5.0.0"
   dependencies:
@@ -5847,7 +5847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-align-assignments@npm:^1.1.2":
+"eslint-plugin-align-assignments@npm:1.1.2":
   version: 1.1.2
   resolution: "eslint-plugin-align-assignments@npm:1.1.2"
   peerDependencies:
@@ -5868,7 +5868,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.27.5":
+"eslint-plugin-import@npm:2.29.1":
   version: 2.29.1
   resolution: "eslint-plugin-import@npm:2.29.1"
   dependencies:
@@ -5895,7 +5895,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-n@npm:^14.0.0":
+"eslint-plugin-n@npm:14.0.0":
   version: 14.0.0
   resolution: "eslint-plugin-n@npm:14.0.0"
   dependencies:
@@ -5912,7 +5912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-promise@npm:^6.1.1":
+"eslint-plugin-promise@npm:6.1.1":
   version: 6.1.1
   resolution: "eslint-plugin-promise@npm:6.1.1"
   peerDependencies:
@@ -5921,7 +5921,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-unicorn@npm:^47.0.0":
+"eslint-plugin-unicorn@npm:47.0.0":
   version: 47.0.0
   resolution: "eslint-plugin-unicorn@npm:47.0.0"
   dependencies:
@@ -5947,14 +5947,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-varspacing@npm:^1.2.2":
+"eslint-plugin-varspacing@npm:1.2.2":
   version: 1.2.2
   resolution: "eslint-plugin-varspacing@npm:1.2.2"
   checksum: 10c0/b48ee969abfb9e9c686bb8c1e79d5f9c7d7a0d3f831f9d295f6575b8105d0428d62e4eae3736f2c415543fa04b9f21892126c80a55855fbf4202a2ce03a1fbf5
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^9.9.0":
+"eslint-plugin-vue@npm:9.24.0":
   version: 9.24.0
   resolution: "eslint-plugin-vue@npm:9.24.0"
   dependencies:
@@ -6057,7 +6057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.35.0":
+"eslint@npm:8.57.0":
   version: 8.57.0
   resolution: "eslint@npm:8.57.0"
   dependencies:
