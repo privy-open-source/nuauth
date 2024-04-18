@@ -2046,7 +2046,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/module-builder@npm:^0.5.0":
+"@nuxt/module-builder@npm:0.5.5":
   version: 0.5.5
   resolution: "@nuxt/module-builder@npm:0.5.5"
   dependencies:
@@ -2355,15 +2355,15 @@ __metadata:
   resolution: "@privyid/nuauth@workspace:."
   dependencies:
     "@nuxt/kit": "npm:^3.3.3"
-    "@nuxt/module-builder": "npm:^0.5.0"
+    "@nuxt/module-builder": "npm:0.5.5"
     "@nuxt/schema": "npm:^3.3.3"
     "@privyid/eslint-config-persona": "npm:^0.27.0"
-    "@types/html-escaper": "npm:^3.0.2"
-    "@types/node": "npm:^18.15.11"
-    "@types/simple-oauth2": "npm:^5.0.4"
-    "@typescript-eslint/eslint-plugin": "npm:^5.54.1"
-    "@typescript-eslint/parser": "npm:^5.54.1"
-    "@vue/eslint-config-typescript": "npm:^13.0.0"
+    "@types/html-escaper": "npm:3.0.2"
+    "@types/node": "npm:18.19.28"
+    "@types/simple-oauth2": "npm:5.0.7"
+    "@typescript-eslint/eslint-plugin": "npm:5.62.0"
+    "@typescript-eslint/parser": "npm:5.62.0"
+    "@vue/eslint-config-typescript": "npm:13.0.0"
     cookie-es: "npm:^1.0.0"
     defu: "npm:^6.1.2"
     destr: "npm:^2.0.0"
@@ -2384,7 +2384,7 @@ __metadata:
     requrl: "npm:^3.0.2"
     simple-oauth2: "npm:^5.0.0"
     type-fest: "npm:^4.8.2"
-    typescript: "npm:^5.0.0"
+    typescript: "npm:5.4.3"
     ufo: "npm:^1.0.1"
   languageName: unknown
   linkType: soft
@@ -2961,7 +2961,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/html-escaper@npm:^3.0.2":
+"@types/html-escaper@npm:3.0.2":
   version: 3.0.2
   resolution: "@types/html-escaper@npm:3.0.2"
   checksum: 10c0/90fc41f775f3b69db9059e78e94e2f981610d0081a7587c854fd95650b54f79ea6e75947288ea70e683fd2a7f9b438970bef1e292fad531918a2d90e67123abd
@@ -3007,7 +3007,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.15.11":
+"@types/node@npm:18.19.28":
   version: 18.19.28
   resolution: "@types/node@npm:18.19.28"
   dependencies:
@@ -3044,14 +3044,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/simple-oauth2@npm:^5.0.4":
+"@types/simple-oauth2@npm:5.0.7":
   version: 5.0.7
   resolution: "@types/simple-oauth2@npm:5.0.7"
   checksum: 10c0/1cfb87b1ee4b58b30e4f9753271ea73282e707553b9b3360755064e4c7b1e96a01cabc5e83d13841369595ea7e451d3d576bea02340b4f17f9e930f54c08a15e
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.54.1":
+"@typescript-eslint/eslint-plugin@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.62.0"
   dependencies:
@@ -3100,7 +3100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.50.0, @typescript-eslint/parser@npm:^5.54.1":
+"@typescript-eslint/parser@npm:5.62.0, @typescript-eslint/parser@npm:^5.50.0":
   version: 5.62.0
   resolution: "@typescript-eslint/parser@npm:5.62.0"
   dependencies:
@@ -3575,7 +3575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/eslint-config-typescript@npm:^13.0.0":
+"@vue/eslint-config-typescript@npm:13.0.0":
   version: 13.0.0
   resolution: "@vue/eslint-config-typescript@npm:13.0.0"
   dependencies:
@@ -11603,7 +11603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.0.0":
+"typescript@npm:5.4.3":
   version: 5.4.3
   resolution: "typescript@npm:5.4.3"
   bin:
@@ -11613,7 +11613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>":
   version: 5.4.3
   resolution: "typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"
   bin:
