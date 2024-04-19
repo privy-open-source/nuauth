@@ -2335,7 +2335,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@privyid/eslint-config-persona@npm:^0.27.0":
+"@privyid/eslint-config-persona@npm:0.27.0":
   version: 0.27.0
   resolution: "@privyid/eslint-config-persona@npm:0.27.0"
   peerDependencies:
@@ -2364,7 +2364,7 @@ __metadata:
     "@nuxt/kit": "npm:^3.3.3"
     "@nuxt/module-builder": "npm:0.5.5"
     "@nuxt/schema": "npm:3.11.1"
-    "@privyid/eslint-config-persona": "npm:^0.27.0"
+    "@privyid/eslint-config-persona": "npm:0.27.0"
     "@types/html-escaper": "npm:3.0.2"
     "@types/node": "npm:18.19.28"
     "@types/simple-oauth2": "npm:5.0.7"
