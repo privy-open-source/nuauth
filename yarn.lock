@@ -2112,22 +2112,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/module-builder@npm:0.5.5":
-  version: 0.5.5
-  resolution: "@nuxt/module-builder@npm:0.5.5"
+"@nuxt/module-builder@npm:0.6.0":
+  version: 0.6.0
+  resolution: "@nuxt/module-builder@npm:0.6.0"
   dependencies:
-    citty: "npm:^0.1.5"
+    citty: "npm:^0.1.6"
     consola: "npm:^3.2.3"
-    mlly: "npm:^1.4.2"
-    pathe: "npm:^1.1.1"
+    defu: "npm:^6.1.4"
+    mlly: "npm:^1.6.1"
+    pathe: "npm:^1.1.2"
+    pkg-types: "npm:^1.1.0"
     unbuild: "npm:^2.0.0"
   peerDependencies:
-    "@nuxt/kit": ^3.8.2
-    nuxi: ^3.10.0
+    "@nuxt/kit": ^3.11.2
+    nuxi: ^3.11.1
   bin:
     nuxt-build-module: dist/cli.mjs
     nuxt-module-build: dist/cli.mjs
-  checksum: 10c0/28e6ffe7f435aa3908a592c1e616ef21f08e0a858e91c16c8671b93fc1eb3ba0dc9d7c2c805433371d7f848861ea9c0c063e3cde2f01469fc029965f9703c7cf
+  checksum: 10c0/7fb9b0d1516c8a034450b24165b7052c0554e3fd1c5c7626183126e192dad8edb3c447ba9dae9979151cf612441892e3c3c7ae34a01ffd36f604fdac8bf5ffae
   languageName: node
   linkType: hard
 
@@ -2440,7 +2442,7 @@ __metadata:
   resolution: "@privyid/nuauth@workspace:."
   dependencies:
     "@nuxt/kit": "npm:^3.3.3"
-    "@nuxt/module-builder": "npm:0.5.5"
+    "@nuxt/module-builder": "npm:0.6.0"
     "@nuxt/schema": "npm:3.11.2"
     "@privyid/eslint-config-persona": "npm:0.27.0"
     "@types/html-escaper": "npm:3.0.2"
