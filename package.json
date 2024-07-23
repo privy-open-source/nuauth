@@ -79,7 +79,7 @@
     "eslint-plugin-varspacing": "1.2.2",
     "eslint-plugin-vue": "9.27.0",
     "nuxt": "3.12.4",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "publishConfig": {
     "access": "public"
