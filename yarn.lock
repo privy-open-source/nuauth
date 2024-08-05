@@ -2790,24 +2790,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/module-builder@npm:0.6.0":
-  version: 0.6.0
-  resolution: "@nuxt/module-builder@npm:0.6.0"
+"@nuxt/module-builder@npm:0.8.1":
+  version: 0.8.1
+  resolution: "@nuxt/module-builder@npm:0.8.1"
   dependencies:
     citty: "npm:^0.1.6"
     consola: "npm:^3.2.3"
     defu: "npm:^6.1.4"
-    mlly: "npm:^1.6.1"
+    magic-regexp: "npm:^0.8.0"
+    mlly: "npm:^1.7.1"
     pathe: "npm:^1.1.2"
-    pkg-types: "npm:^1.1.0"
+    pkg-types: "npm:^1.1.1"
+    tsconfck: "npm:^3.1.1"
     unbuild: "npm:^2.0.0"
   peerDependencies:
-    "@nuxt/kit": ^3.11.2
-    nuxi: ^3.11.1
+    "@nuxt/kit": ^3.12.2
+    nuxi: ^3.12.0
   bin:
     nuxt-build-module: dist/cli.mjs
     nuxt-module-build: dist/cli.mjs
-  checksum: 10c0/7fb9b0d1516c8a034450b24165b7052c0554e3fd1c5c7626183126e192dad8edb3c447ba9dae9979151cf612441892e3c3c7ae34a01ffd36f604fdac8bf5ffae
+  checksum: 10c0/44e0ef589301206f16a9cc2620f918995c3c5b468c73113341af59530da71400a3873c4a6347f5bad33116ec9d658242b79d367e59c1be55bed288629b3fd583
   languageName: node
   linkType: hard
 
@@ -3433,7 +3435,7 @@ __metadata:
   resolution: "@privyid/nuauth@workspace:."
   dependencies:
     "@nuxt/kit": "npm:^3.3.3"
-    "@nuxt/module-builder": "npm:0.6.0"
+    "@nuxt/module-builder": "npm:0.8.1"
     "@nuxt/schema": "npm:3.12.4"
     "@privyid/eslint-config-persona": "npm:0.27.0"
     "@types/html-escaper": "npm:3.0.2"
@@ -9680,6 +9682,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-regexp@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "magic-regexp@npm:0.8.0"
+  dependencies:
+    estree-walker: "npm:^3.0.3"
+    magic-string: "npm:^0.30.8"
+    mlly: "npm:^1.6.1"
+    regexp-tree: "npm:^0.1.27"
+    type-level-regexp: "npm:~0.1.17"
+    ufo: "npm:^1.4.0"
+    unplugin: "npm:^1.8.3"
+  checksum: 10c0/785ef825cc754ce6cb4b009b1cc7df7ea014d7a8a829cd6bbbd11618322b914ac1cdbd8fc4f2b269c80d72bbb3ad180682c5e593fb0754dd0e9bd5759cab881e
+  languageName: node
+  linkType: hard
+
 "magic-string-ast@npm:^0.6.0":
   version: 0.6.2
   resolution: "magic-string-ast@npm:0.6.2"
@@ -11016,17 +11033,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pkg-types@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "pkg-types@npm:1.1.0"
-  dependencies:
-    confbox: "npm:^0.1.7"
-    mlly: "npm:^1.6.1"
-    pathe: "npm:^1.1.2"
-  checksum: 10c0/b350da13d2dab7dc2fa9d65a08a2038d841d8d8c94bf3878dd911a522e20da50d6662bab510fa329e363e403892374b3b847ebf7b3e10011805cdefb00f228fd
-  languageName: node
-  linkType: hard
-
 "pkg-types@npm:^1.1.1":
   version: 1.1.1
   resolution: "pkg-types@npm:1.1.1"
@@ -11682,7 +11688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regexp-tree@npm:^0.1.24, regexp-tree@npm:~0.1.1":
+"regexp-tree@npm:^0.1.24, regexp-tree@npm:^0.1.27, regexp-tree@npm:~0.1.1":
   version: 0.1.27
   resolution: "regexp-tree@npm:0.1.27"
   bin:
@@ -12956,6 +12962,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tsconfck@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "tsconfck@npm:3.1.1"
+  peerDependencies:
+    typescript: ^5.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    tsconfck: bin/tsconfck.js
+  checksum: 10c0/e133eb308ba37e8db8dbac1905bddaaf4a62f0e01aa88143e19867e274a877b86b35cf69c9a0172ca3e7d1a4bb32400381ac7f7a1429e34250a8d7ae55aee3e7
+  languageName: node
+  linkType: hard
+
 "tsconfig-paths@npm:^3.15.0":
   version: 3.15.0
   resolution: "tsconfig-paths@npm:3.15.0"
@@ -13034,6 +13054,13 @@ __metadata:
   version: 4.14.0
   resolution: "type-fest@npm:4.14.0"
   checksum: 10c0/97d03f8af58bf50b83016eb8178f19698ef930479e21fd4d4555ad4e3617d4aff0e4400f6ab2a350975f18fa6439e7248172f92dea9229cd5e9942a2daa48806
+  languageName: node
+  linkType: hard
+
+"type-level-regexp@npm:~0.1.17":
+  version: 0.1.17
+  resolution: "type-level-regexp@npm:0.1.17"
+  checksum: 10c0/54798f83464cb5ce04246c9c4739ec471c526aaa7690679fddbce05b689b99403de709f3fcb494555d4276b46c606435a95855e52535602f63378ab8b38010d5
   languageName: node
   linkType: hard
 
@@ -13427,6 +13454,18 @@ __metadata:
     webpack-sources: "npm:^3.2.3"
     webpack-virtual-modules: "npm:^0.6.0"
   checksum: 10c0/08cee7d100de3b8697d33eaa32405d821d0f51600640ce79e26f4258ddedcd9ac4c022f0453d6d978e9f75fd939ba9553440827987b2b03078f7087f4bef7c96
+  languageName: node
+  linkType: hard
+
+"unplugin@npm:^1.8.3":
+  version: 1.12.0
+  resolution: "unplugin@npm:1.12.0"
+  dependencies:
+    acorn: "npm:^8.12.1"
+    chokidar: "npm:^3.6.0"
+    webpack-sources: "npm:^3.2.3"
+    webpack-virtual-modules: "npm:^0.6.2"
+  checksum: 10c0/d4ca9508adbc3724fbafe0eec50e346b3772d3bca7881f20b29d403c576fae5ac2f1224cc84481913396e9c52cba5e934d2815d1b2a206c439fdc52ec39889b8
   languageName: node
   linkType: hard
 
@@ -14000,6 +14039,13 @@ __metadata:
   version: 0.6.1
   resolution: "webpack-virtual-modules@npm:0.6.1"
   checksum: 10c0/696bdc1acf3806374bdeb4b9b9856b79ee70b31e92f325dfab9b8c8c7e14bb6ddffa9f895a214770c4fb8fea45a21f34ca64310f74e877292a90f4a9966c9c2f
+  languageName: node
+  linkType: hard
+
+"webpack-virtual-modules@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "webpack-virtual-modules@npm:0.6.2"
+  checksum: 10c0/5ffbddf0e84bf1562ff86cf6fcf039c74edf09d78358a6904a09bbd4484e8bb6812dc385fe14330b715031892dcd8423f7a88278b57c9f5002c84c2860179add
   languageName: node
   linkType: hard
 
