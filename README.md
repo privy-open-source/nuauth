@@ -186,6 +186,17 @@ Or you can set auth profile using it
 </script>
 ```
 
+To prevent auto redirect to OAuth login page when access app
+
+```
+// nuxt.config.ts
+
+nuauth: {
+  middleware: false
+  // ...
+}
+```
+
 ## Contribution
 
 - Clone this repository
