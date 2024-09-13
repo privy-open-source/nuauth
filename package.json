@@ -13,11 +13,6 @@
     "./core": {
       "import": "./dist/core/index.mjs",
       "types": "./dist/core/index.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.cjs",
-      "types": "./dist/utils.d.ts"
     }
   },
   "typesVersions": {
@@ -43,10 +38,10 @@
     "lint": "eslint . --ext .js,.vue,.ts --format pretty",
     "fix": "yarn lint --fix",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.3.3",
+    "@nuxt/kit": "^3.13.1",
     "cookie-es": "^1.0.0",
     "defu": "^6.1.2",
     "destr": "^2.0.0",
@@ -59,7 +54,7 @@
     "ufo": "^1.0.1"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "0.6.0",
+    "@nuxt/module-builder": "0.8.4",
     "@nuxt/schema": "3.13.1",
     "@privyid/eslint-config-persona": "0.27.0",
     "@types/html-escaper": "3.0.2",
@@ -79,7 +74,7 @@
     "eslint-plugin-varspacing": "1.2.2",
     "eslint-plugin-vue": "9.28.0",
     "nuxt": "3.13.1",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2"
   },
   "publishConfig": {
     "access": "public"

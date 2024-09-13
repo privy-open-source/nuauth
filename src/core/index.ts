@@ -3,7 +3,7 @@ import {
   encodePath,
   joinURL,
 } from 'ufo'
-import { ofetch } from 'ofetch'
+import { createFetch } from 'ofetch'
 import getURL from 'requrl'
 import { getCookie } from 'h3'
 import { hash } from 'ohash'
@@ -27,6 +27,8 @@ interface AuthRefreshResponse {
 }
 
 type NavigateResult = ReturnType<typeof navigateTo>
+
+const $fetch = globalThis.$fetch ?? createFetch({ fetch: globalThis.fetch })
 
 export interface NuAuth {
   /**
@@ -97,7 +99,7 @@ export function useNuAuth (authProfile?: string): NuAuth {
   }
 
   async function refresh (): Promise<string> {
-    const response = await ofetch<AuthRefreshResponse>('/auth/refresh', {
+    const response = await $fetch<AuthRefreshResponse>('/auth/refresh', {
       baseURL,
       headers,
       query: { profile },
