@@ -119,7 +119,7 @@ export default async function sendRedirectPage (event: H3Event, url: string, coo
 
           <footer>
             <p>
-              If you are not redirect automaticaly, <a href="${escape(url)}">click here</a>.
+              If you are not redirect automatically, <a href="${escape(url)}">click here</a>.
             </p>
           </footer>
         </div>
