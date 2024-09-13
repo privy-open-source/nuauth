@@ -2754,7 +2754,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.13.1, @nuxt/kit@npm:^3.13.0":
+"@nuxt/kit@npm:3.13.1, @nuxt/kit@npm:^3.13.0, @nuxt/kit@npm:^3.13.1":
   version: 3.13.1
   resolution: "@nuxt/kit@npm:3.13.1"
   dependencies:
@@ -2808,32 +2808,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:^3.3.3":
-  version: 3.11.1
-  resolution: "@nuxt/kit@npm:3.11.1"
-  dependencies:
-    "@nuxt/schema": "npm:3.11.1"
-    c12: "npm:^1.10.0"
-    consola: "npm:^3.2.3"
-    defu: "npm:^6.1.4"
-    globby: "npm:^14.0.1"
-    hash-sum: "npm:^2.0.0"
-    ignore: "npm:^5.3.1"
-    jiti: "npm:^1.21.0"
-    knitwork: "npm:^1.0.0"
-    mlly: "npm:^1.6.1"
-    pathe: "npm:^1.1.2"
-    pkg-types: "npm:^1.0.3"
-    scule: "npm:^1.3.0"
-    semver: "npm:^7.6.0"
-    ufo: "npm:^1.5.2"
-    unctx: "npm:^2.3.1"
-    unimport: "npm:^3.7.1"
-    untyped: "npm:^1.4.2"
-  checksum: 10c0/f9068c7f37c2cb916d025696268aa8110697bb1de22d2662cf02489e34b22bba261f303a7117a82319c35bac1407a6dcb9965f2ec89b20cbfe172ac029b372fe
-  languageName: node
-  linkType: hard
-
 "@nuxt/module-builder@npm:0.8.4":
   version: 0.8.4
   resolution: "@nuxt/module-builder@npm:0.8.4"
@@ -2854,25 +2828,6 @@ __metadata:
     nuxt-build-module: dist/cli.mjs
     nuxt-module-build: dist/cli.mjs
   checksum: 10c0/91ab25e84fef8425807e0272e6634868522f4b7c8d562d8eaacebe201b93818fa5fab76ac6373c4b1146e32a6b529d3586d7ee645398bb738a8482c196ada9dd
-  languageName: node
-  linkType: hard
-
-"@nuxt/schema@npm:3.11.1":
-  version: 3.11.1
-  resolution: "@nuxt/schema@npm:3.11.1"
-  dependencies:
-    "@nuxt/ui-templates": "npm:^1.3.1"
-    consola: "npm:^3.2.3"
-    defu: "npm:^6.1.4"
-    hookable: "npm:^5.5.3"
-    pathe: "npm:^1.1.2"
-    pkg-types: "npm:^1.0.3"
-    scule: "npm:^1.3.0"
-    std-env: "npm:^3.7.0"
-    ufo: "npm:^1.5.2"
-    unimport: "npm:^3.7.1"
-    untyped: "npm:^1.4.2"
-  checksum: 10c0/e5a39db306d3eb6eee8e932b1cb60c206383955fe0e01146742bb824278ce33ba4e28cda81f3e9722651c628ed3e1b7dfac5dc646a2bbb99970dafcacc195661
   languageName: node
   linkType: hard
 
@@ -2939,13 +2894,6 @@ __metadata:
   bin:
     nuxt-telemetry: bin/nuxt-telemetry.mjs
   checksum: 10c0/5f7552a3d061fe7f9d85468aae2c0aa67ba3320bb8587e25bdf7b4e3f4901fe5169e31ccc0f998728a3592e35deaacbacd02d67eed07bd73ba714ce34e83dc6d
-  languageName: node
-  linkType: hard
-
-"@nuxt/ui-templates@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "@nuxt/ui-templates@npm:1.3.1"
-  checksum: 10c0/8f5d514171a3c803f42f5c1deb9a4bdcbe4113e2b767197fe19b64d6abd1c296d46e596a23db06bddc4c5b4914f2c2e6127f6fef0a559f3c532673cc7362e611
   languageName: node
   linkType: hard
 
@@ -3458,7 +3406,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@privyid/nuauth@workspace:."
   dependencies:
-    "@nuxt/kit": "npm:^3.3.3"
+    "@nuxt/kit": "npm:^3.13.1"
     "@nuxt/module-builder": "npm:0.8.4"
     "@nuxt/schema": "npm:3.13.1"
     "@privyid/eslint-config-persona": "npm:0.27.0"
@@ -13801,7 +13749,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ufo@npm:^1.0.1, ufo@npm:^1.1.2, ufo@npm:^1.3.0, ufo@npm:^1.3.2, ufo@npm:^1.4.0, ufo@npm:^1.5.2, ufo@npm:^1.5.3":
+"ufo@npm:^1.0.1, ufo@npm:^1.1.2, ufo@npm:^1.3.0, ufo@npm:^1.3.2, ufo@npm:^1.4.0, ufo@npm:^1.5.3":
   version: 1.5.3
   resolution: "ufo@npm:1.5.3"
   checksum: 10c0/1df10702582aa74f4deac4486ecdfd660e74be057355f1afb6adfa14243476cf3d3acff734ccc3d0b74e9bfdefe91d578f3edbbb0a5b2430fe93cd672370e024
