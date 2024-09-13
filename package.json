@@ -59,11 +59,11 @@
     "ufo": "^1.0.1"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "0.6.0",
-    "@nuxt/schema": "3.13.0",
+    "@nuxt/module-builder": "0.8.4",
+    "@nuxt/schema": "3.13.1",
     "@privyid/eslint-config-persona": "0.27.0",
     "@types/html-escaper": "3.0.2",
-    "@types/node": "20.16.4",
+    "@types/node": "20.16.5",
     "@types/simple-oauth2": "5.0.7",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
@@ -78,7 +78,7 @@
     "eslint-plugin-unicorn": "47.0.0",
     "eslint-plugin-varspacing": "1.2.2",
     "eslint-plugin-vue": "9.28.0",
-    "nuxt": "3.13.0",
+    "nuxt": "3.13.1",
     "typescript": "5.5.4"
   },
   "publishConfig": {
