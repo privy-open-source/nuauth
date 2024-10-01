@@ -12,6 +12,7 @@ export function getClient (profile: string) {
       tokenPath    : getEnv(profile, 'TOKEN_PATH'),
       authorizePath: getEnv(profile, 'AUTHORIZE_PATH'),
       revokePath   : getEnv(profile, 'REVOKE_PATH'),
+      refreshPath  : getEnv(profile, 'REFRESH_PATH'),
     },
     options: { authorizationMethod: 'body' },
   })
