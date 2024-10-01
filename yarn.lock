@@ -2734,7 +2734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.13.2":
+"@nuxt/kit@npm:3.13.2, @nuxt/kit@npm:^3.13.2":
   version: 3.13.2
   resolution: "@nuxt/kit@npm:3.13.2"
   dependencies:
@@ -3383,7 +3383,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@privyid/nuauth@workspace:."
   dependencies:
-    "@nuxt/kit": "npm:^3.13.1"
+    "@nuxt/kit": "npm:^3.13.2"
     "@nuxt/module-builder": "npm:0.8.4"
     "@nuxt/schema": "npm:3.13.2"
     "@privyid/eslint-config-persona": "npm:0.27.0"

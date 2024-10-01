@@ -65,18 +65,22 @@ if (isAlmostExpired(15)) {
 
 This module read enviroment variables directly.
 
-| Env Name                 | Default              | Description                                                                           |
-|--------------------------|----------------------|---------------------------------------------------------------------------------------|
-| OAUTH_HOST               | -                    | **(Required)** Oauth server's host                                                    |
-| OAUTH_CLIENT_ID          | -                    | **(Required)** Oauth Client ID                                                        |
-| OAUTH_CLIENT_SECRET      | -                    | **(Required)** Oauth Client Secret                                                    |
-| OAUTH_REDIRECT_URI       | `/auth/callback`     | Oauth Callback URI                                                                    |
-| OAUTH_SCOPE              | `public read`        | Oauth scope                                                                           |
-| OAUTH_LOGOUT_URI         | -                    | Oauth Logout URI                                                                      |
-| OAUTH_HOME               | `/`                  | Redirect path after success login                                                     |
-| OAUTH_REGISTER           | `false`              | Add params register to Oauth Server                                                   |
-| OAUTH_REDIRECT_WHITELIST | -                    | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
-| OAUTH_DENIED_REDIRECT    | `Same as OAUTH_HOME` | Redirect path after user after denying the authorization request                      |
+| Env Name                 | Default                    | Description                                                                           |
+|--------------------------|----------------------------|---------------------------------------------------------------------------------------|
+| OAUTH_HOST               | -                          | **(Required)** Oauth server's host                                                    |
+| OAUTH_CLIENT_ID          | -                          | **(Required)** Oauth Client ID                                                        |
+| OAUTH_CLIENT_SECRET      | -                          | **(Required)** Oauth Client Secret                                                    |
+| OAUTH_REDIRECT_URI       | `/auth/callback`           | Oauth Callback URI                                                                    |
+| OAUTH_SCOPE              | `public read`              | Oauth scope                                                                           |
+| OAUTH_LOGOUT_URI         | -                          | Oauth Logout URI                                                                      |
+| OAUTH_HOME               | `/`                        | Redirect path after success login                                                     |
+| OAUTH_REGISTER           | `false`                    | Add params register to Oauth Server                                                   |
+| OAUTH_REDIRECT_WHITELIST | -                          | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
+| OAUTH_DENIED_REDIRECT    | `Same as OAUTH_HOME`       | Redirect path after user after denying the authorization request                      |
+| OAUTH_AUTHORIZE_PATH     | `/oauth/authorize`         | URL path to request an authorization code                                             |
+| OAUTH_TOKEN_PATH         | `/oauth/token`             | URL path to obtain access tokens                                                      |
+| OAUTH_REVOKE_PATH        | `/oauth/revoke`            | URL path to revoke access tokens                                                      |
+| OAUTH_REFRESH_PATH       | `Same as OAUTH_TOKEN_PATH` | URL path to refresh access tokens                                                     |
 
 👉 See [.env.example](/.env.example) for example
 
