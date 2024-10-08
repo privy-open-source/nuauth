@@ -2,6 +2,6 @@
   "private": true,
   "name": "@privyid/nuauth",
   "devDependencies": {
-    "@types/node": "20.16.10"
+    "@types/node": "20.16.11"
   }
 }
