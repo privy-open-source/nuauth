@@ -3014,25 +3014,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@privyid/eslint-config-persona@npm:0.27.0":
-  version: 0.27.0
-  resolution: "@privyid/eslint-config-persona@npm:0.27.0"
+"@privyid/eslint-config-persona@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@privyid/eslint-config-persona@npm:1.0.0"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">=5.47.0"
-    "@typescript-eslint/parser": ">=5.47.0"
-    "@vue/eslint-config-typescript": ">=11.0.2"
-    eslint: ">=8.30.0"
-    eslint-config-standard-with-typescript: ">=24.0.0"
-    eslint-formatter-pretty: ">=4.1.0"
-    eslint-plugin-align-assignments: ">=1.1.2"
-    eslint-plugin-import: ">=2.26.0"
-    eslint-plugin-n: ">=15.6.0"
-    eslint-plugin-node: ">=11.1.0"
-    eslint-plugin-promise: ">=6.1.1"
-    eslint-plugin-unicorn: ">=45.0.2"
-    eslint-plugin-varspacing: ">=1.2.2"
-    eslint-plugin-vue: ">=9.8.0"
-  checksum: 10c0/bee34cf541d6ef490d18052ef244f2bb7624481793d1779a131af5ad177f7357a0c7331d95d42478989a9c135d3d970dbcd8a87b9384cf440d4dd46cf1229d6e
+    "@typescript-eslint/eslint-plugin": 5.62.0
+    "@typescript-eslint/parser": 5.62.0
+    "@vue/eslint-config-typescript": 13.0.0
+    eslint: 9.6.0
+    eslint-config-standard-with-typescript: 43.0.1
+    eslint-formatter-pretty: 6.0.1
+    eslint-plugin-align-assignments: 1.1.2
+    eslint-plugin-import: 2.29.1
+    eslint-plugin-n: 17.9.0
+    eslint-plugin-node: 11.1.0
+    eslint-plugin-promise: 6.1.1
+    eslint-plugin-unicorn: 54.0.0
+    eslint-plugin-varspacing: 1.2.2
+    eslint-plugin-vue: 9.23.0
+    typescript: 5.6.3
+  checksum: 10c0/ba50bfd9032527cdbfeb6ab15d3fa3a4a5dfe0b50de65da1a41990802a1e30d9d243859a35213cbbf82a118185b2379b6a548613d2882865a2c6248d4701727a
   languageName: node
   linkType: hard
 
@@ -3043,7 +3044,7 @@ __metadata:
     "@nuxt/kit": "npm:^3.13.2"
     "@nuxt/module-builder": "npm:0.8.4"
     "@nuxt/schema": "npm:3.14.1592"
-    "@privyid/eslint-config-persona": "npm:0.27.0"
+    "@privyid/eslint-config-persona": "npm:1.0.0"
     "@types/html-escaper": "npm:3.0.2"
     "@types/node": "npm:22.10.1"
     "@types/simple-oauth2": "npm:5.0.7"
