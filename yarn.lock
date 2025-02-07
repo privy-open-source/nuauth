@@ -3000,7 +3000,7 @@ __metadata:
     "@nuxt/module-builder": "npm:0.8.4"
     "@nuxt/schema": "npm:3.15.0"
     "@privyid/eslint-config-persona": "npm:1.0.0"
-    "@types/html-escaper": "npm:3.0.2"
+    "@types/html-escaper": "npm:3.0.4"
     "@types/node": "npm:22.10.3"
     "@types/simple-oauth2": "npm:5.0.7"
     "@typescript-eslint/eslint-plugin": "npm:5.62.0"
@@ -3775,10 +3775,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/html-escaper@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@types/html-escaper@npm:3.0.2"
-  checksum: 10c0/90fc41f775f3b69db9059e78e94e2f981610d0081a7587c854fd95650b54f79ea6e75947288ea70e683fd2a7f9b438970bef1e292fad531918a2d90e67123abd
+"@types/html-escaper@npm:3.0.4":
+  version: 3.0.4
+  resolution: "@types/html-escaper@npm:3.0.4"
+  checksum: 10c0/9ce4e750ff35d47aefeba3ce34525c8358ec3c35b45bfff05cc5c2b09d0dd0064bd93c45cc5b51e92c471dfec37559bdfffd7f17776cd6a184d5521c1cf6b310
   languageName: node
   linkType: hard
 
