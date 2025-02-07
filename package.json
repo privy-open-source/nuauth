@@ -56,7 +56,7 @@
   "devDependencies": {
     "@nuxt/module-builder": "0.8.4",
     "@nuxt/schema": "3.15.4",
-    "@privyid/eslint-config-persona": "1.0.0",
+    "@privyid/eslint-config-persona": "1.1.0",
     "@types/html-escaper": "3.0.4",
     "@types/node": "22.10.3",
     "@types/simple-oauth2": "5.0.7",
