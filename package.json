@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.8.4",
-    "@nuxt/schema": "3.15.0",
+    "@nuxt/schema": "3.15.4",
     "@privyid/eslint-config-persona": "1.0.0",
     "@types/html-escaper": "3.0.4",
     "@types/node": "22.10.3",
@@ -73,7 +73,7 @@
     "eslint-plugin-unicorn": "47.0.0",
     "eslint-plugin-varspacing": "1.2.2",
     "eslint-plugin-vue": "9.32.0",
-    "nuxt": "3.15.0",
+    "nuxt": "3.15.4",
     "typescript": "5.7.3"
   },
   "publishConfig": {
