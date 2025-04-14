@@ -5,7 +5,6 @@ import {
   getHeader,
 } from 'h3'
 import { escape } from 'html-escaper'
-
 import type { CookieSerializeOptions } from 'cookie-es'
 
 /**

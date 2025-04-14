@@ -9,6 +9,7 @@ import defu from 'defu'
 import { useRuntimeConfig } from '#imports'
 import type { CookieSerializeOptions } from 'cookie-es'
 import { getClient } from '../core/client'
+import { setNoCache } from '../core/utils'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -34,6 +35,7 @@ export default defineEventHandler(async (event) => {
     setCookie(event, `${profile}/token`, token, cookieConfig)
     setCookie(event, `${profile}/refresh-token`, refreshToken, cookieConfig)
     setCookie(event, `${profile}/expires`, expires.toISOString(), cookieConfig)
+    setNoCache(event)
 
     return {
       code   : 200,

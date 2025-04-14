@@ -1,4 +1,4 @@
-import { type H3Event } from 'h3'
+import { setHeader, type H3Event } from 'h3'
 import {
   decodePath,
   parseURL,
@@ -61,4 +61,10 @@ export function getRedirectUri (profile: string, event: H3Event): string {
   const redirectUrl = getEnv(profile, 'REDIRECT_URI') || '/auth/callback'
 
   return withBase(redirectUrl, baseURL)
+}
+
+export function setNoCache (event: H3Event) {
+  setHeader(event, 'cache-control', 'no-cache, no-store, must-revalidate')
+  setHeader(event, 'pragma', 'no-cache')
+  setHeader(event, 'expires', '0')
 }
