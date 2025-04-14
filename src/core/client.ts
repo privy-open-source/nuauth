@@ -10,6 +10,7 @@ export function getClient (profile: string) {
     auth: {
       tokenHost    : getEnv(profile, 'HOST'),
       tokenPath    : getEnv(profile, 'TOKEN_PATH'),
+      authorizeHost: getEnv(profile, 'AUTHORIZE_HOST'),
       authorizePath: getEnv(profile, 'AUTHORIZE_PATH'),
       revokePath   : getEnv(profile, 'REVOKE_PATH'),
       refreshPath  : getEnv(profile, 'REFRESH_PATH'),

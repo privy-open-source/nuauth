@@ -77,6 +77,7 @@ This module read enviroment variables directly.
 | OAUTH_REGISTER           | `false`                    | Add params register to Oauth Server                                                   |
 | OAUTH_REDIRECT_WHITELIST | -                          | Redirect path after success login whitelist, for multiple value, use `;` as delimeter |
 | OAUTH_DENIED_REDIRECT    | `Same as OAUTH_HOME`       | Redirect path after user after denying the authorization request                      |
+| OAUTH_AUTHORIZE_HOST     | `Same as OAUTH_HOST`       | Host for Authorization token                                                          |
 | OAUTH_AUTHORIZE_PATH     | `/oauth/authorize`         | URL path to request an authorization code                                             |
 | OAUTH_TOKEN_PATH         | `/oauth/token`             | URL path to obtain access tokens                                                      |
 | OAUTH_REVOKE_PATH        | `/oauth/revoke`            | URL path to revoke access tokens                                                      |
