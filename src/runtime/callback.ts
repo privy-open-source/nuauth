@@ -16,6 +16,7 @@ import {
   getEnv,
   getHomeURL,
   getRedirectUri,
+  setNoCache,
 } from '../core/utils'
 import sendRedirectPage from '../core/redirect'
 import { getClient } from '../core/client'
@@ -67,6 +68,7 @@ export default defineEventHandler(async (event) => {
 
     // Remove temporary state
     deleteCookie(event, '_state')
+    setNoCache(event)
 
     await sendRedirectPage(event, withBase(homeURL, baseURL), cookieConfig)
   } catch (error) {

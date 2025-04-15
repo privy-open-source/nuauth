@@ -8,7 +8,11 @@ import {
 } from 'h3'
 import { withQuery } from 'ufo'
 import { useRuntimeConfig } from '#imports'
-import { getRedirectUri, getEnv } from '../core/utils'
+import {
+  getRedirectUri,
+  getEnv,
+  setNoCache,
+} from '../core/utils'
 
 export default defineEventHandler(async (event) => {
   const config  = useRuntimeConfig()
@@ -36,6 +40,7 @@ export default defineEventHandler(async (event) => {
 
   // Save temp state into cookie
   setCookie(event, '_state', state)
+  setNoCache(event)
 
   await sendRedirect(event, logoutUrl)
 })

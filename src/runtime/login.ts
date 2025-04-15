@@ -7,7 +7,11 @@ import {
 } from 'h3'
 import { withQuery } from 'ufo'
 import { useRuntimeConfig } from '#imports'
-import { getEnv, getRedirectUri } from '../core/utils'
+import {
+  getEnv,
+  getRedirectUri,
+  setNoCache,
+} from '../core/utils'
 import { getClient } from '../core/client'
 
 export default defineEventHandler(async (event) => {
@@ -32,6 +36,7 @@ export default defineEventHandler(async (event) => {
 
     // Save temp state into cookie
     setCookie(event, '_state', state)
+    setNoCache(event)
 
     await sendRedirect(event, loginURL)
   } catch (error) {
