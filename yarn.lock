@@ -2777,9 +2777,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@privyid/eslint-config-persona@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@privyid/eslint-config-persona@npm:1.1.0"
+"@privyid/eslint-config-persona@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@privyid/eslint-config-persona@npm:1.1.2"
   peerDependencies:
     "@typescript-eslint/eslint-plugin": 5.62.0
     "@typescript-eslint/parser": 5.62.0
@@ -2796,7 +2796,7 @@ __metadata:
     eslint-plugin-varspacing: 1.2.2
     eslint-plugin-vue: 9.23.0
     typescript: 5.6.3
-  checksum: 10c0/146ee709bb6ba35efec7e1814aea8dc8fcf287ad7774f73a0e7fb8701cbf6c3a8b2e567e22275a2d50a1176bc332ab764998c23dc71efc060bfa7523f4356833
+  checksum: 10c0/e298cb43a42fd1a908cfd7b532efd4917d9f010c8883cb5689937959de97d5993ecca90cef1a0677acb0a93ef9ff85604984023dca80fedf981b2d7b90011c5e
   languageName: node
   linkType: hard
 
@@ -2807,7 +2807,7 @@ __metadata:
     "@nuxt/kit": "npm:^3.13.2"
     "@nuxt/module-builder": "npm:0.8.4"
     "@nuxt/schema": "npm:3.16.1"
-    "@privyid/eslint-config-persona": "npm:1.1.0"
+    "@privyid/eslint-config-persona": "npm:1.1.2"
     "@types/html-escaper": "npm:3.0.4"
     "@types/node": "npm:22.13.1"
     "@types/simple-oauth2": "npm:5.0.7"
