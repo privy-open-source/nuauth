@@ -47,7 +47,7 @@
     "destr": "^2.0.0",
     "h3": "^1.6.4",
     "html-escaper": "^3.0.3",
-    "ohash": "^1.1.2",
+    "ohash": "^2.0.0",
     "requrl": "^3.0.2",
     "simple-oauth2": "^5.0.0",
     "type-fest": "^4.8.2",
