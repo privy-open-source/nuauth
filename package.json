@@ -72,7 +72,7 @@
     "eslint-plugin-promise": "6.6.0",
     "eslint-plugin-unicorn": "47.0.0",
     "eslint-plugin-varspacing": "1.2.2",
-    "eslint-plugin-vue": "9.32.0",
+    "eslint-plugin-vue": "9.33.0",
     "nuxt": "3.17.2",
     "typescript": "5.8.3"
   },
