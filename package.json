@@ -1,7 +1,7 @@
 {
   "name": "@privyid/nuauth",
   "version": "1.1.0",
-  "packageManager": "yarn@4.7.0",
+  "packageManager": "yarn@4.9.1",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -42,12 +42,12 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.13.2",
-    "cookie-es": "^1.0.0",
+    "cookie-es": "^2.0.0",
     "defu": "^6.1.2",
     "destr": "^2.0.0",
     "h3": "^1.6.4",
     "html-escaper": "^3.0.3",
-    "ohash": "^1.1.2",
+    "ohash": "^2.0.0",
     "requrl": "^3.0.2",
     "simple-oauth2": "^5.0.0",
     "type-fest": "^4.8.2",
@@ -55,10 +55,10 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.8.4",
-    "@nuxt/schema": "3.16.1",
-    "@privyid/eslint-config-persona": "1.1.0",
+    "@nuxt/schema": "3.17.4",
+    "@privyid/eslint-config-persona": "1.2.0",
     "@types/html-escaper": "3.0.4",
-    "@types/node": "22.13.1",
+    "@types/node": "22.15.21",
     "@types/simple-oauth2": "5.0.7",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
@@ -72,9 +72,9 @@
     "eslint-plugin-promise": "6.6.0",
     "eslint-plugin-unicorn": "47.0.0",
     "eslint-plugin-varspacing": "1.2.2",
-    "eslint-plugin-vue": "9.32.0",
-    "nuxt": "3.16.1",
-    "typescript": "5.7.3"
+    "eslint-plugin-vue": "9.33.0",
+    "nuxt": "3.17.4",
+    "typescript": "5.8.3"
   },
   "publishConfig": {
     "access": "public"
