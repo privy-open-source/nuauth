@@ -7,6 +7,11 @@ export default defineBuildConfig({
       builder: 'mkdist',
       outDir : 'dist/core',
     },
+    {
+      input  : './src/server/',
+      builder: 'mkdist',
+      outDir : 'dist/server',
+    },
   ],
   externals  : ['#imports'],
   declaration: true,
