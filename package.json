@@ -13,6 +13,10 @@
     "./core": {
       "import": "./dist/core/index.mjs",
       "types": "./dist/core/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server/index.mjs",
+      "types": "./dist/server/index.d.ts"
     }
   },
   "typesVersions": {
@@ -20,8 +24,8 @@
       "core": [
         "./dist/core/index.d.ts"
       ],
-      "utils": [
-        "./dist/utils.d.ts"
+      "server": [
+        "./dist/server/index.d.ts"
       ]
     }
   },
@@ -41,17 +45,19 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.13.2",
+    "@nuxt/kit": "^3.17.4",
     "cookie-es": "^2.0.0",
     "defu": "^6.1.2",
     "destr": "^2.0.0",
-    "h3": "^1.6.4",
-    "html-escaper": "^3.0.3",
+    "escape-goat": "^4.0.0",
+    "h3": "^1.15.3",
+    "hookable": "^5.5.3",
     "ohash": "^2.0.0",
     "requrl": "^3.0.2",
     "simple-oauth2": "^5.0.0",
+    "std-env": "^3.9.0",
     "type-fest": "^4.8.2",
-    "ufo": "^1.0.1"
+    "ufo": "^1.6.1"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.8.4",

@@ -20,8 +20,8 @@ interface AuthRefreshResponse {
   code: number,
   message: string,
   data: {
-    access_token: string,
-    refresh_token: string,
+    token: string,
+    refreshToken: string,
     expires: string,
   },
 }
@@ -105,11 +105,11 @@ export function useNuAuth (authProfile?: string): NuAuth {
       query: { profile },
     })
 
-    token.value        = response.data.access_token
-    refreshToken.value = response.data.refresh_token
+    token.value        = response.data.token
+    refreshToken.value = response.data.refreshToken
     expires.value      = response.data.expires
 
-    return response.data.access_token
+    return response.data.token
   }
 
   return {

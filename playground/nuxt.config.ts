@@ -2,8 +2,12 @@ import { fileURLToPath } from 'node:url'
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  modules   : ['../src/module'],
-  alias     : { '@privyid/nuauth/core': fileURLToPath(new URL('../src/core', import.meta.url)) },
+  compatibilityDate: '2024-09-13',
+  modules          : ['../src/module'],
+  alias            : {
+    '@privyid/nuauth/core'  : fileURLToPath(new URL('../src/core', import.meta.url)),
+    '@privyid/nuauth/server': fileURLToPath(new URL('../src/server', import.meta.url)),
+  },
   typescript: {
     tsConfig: {
       compilerOptions: {
@@ -13,6 +17,4 @@ export default defineNuxtConfig({
     },
   },
   nuauth: { profile: { names: ['oauth', 'gitlab'] } },
-
-  compatibilityDate: '2024-09-13',
 })
