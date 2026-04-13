@@ -4,6 +4,7 @@ import {
   addImports,
   addRouteMiddleware,
   addServerHandler,
+  addServerPlugin,
   createResolver,
   defineNuxtModule,
 } from '@nuxt/kit'
@@ -87,10 +88,12 @@ export default defineNuxtModule<ModuleOptions>({
     if (!nuxt.options.build.transpile.includes('@privyid/nuauth'))
       nuxt.options.build.transpile.push('@privyid/nuauth')
 
-    addServerHandler({ route: '/auth/login', handler: resolve('./runtime/login') })
-    addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/callback') })
-    addServerHandler({ route: '/auth/refresh', handler: resolve('./runtime/refresh') })
-    addServerHandler({ route: '/auth/logout', handler: resolve('./runtime/logout') })
+    addServerPlugin(resolve('./runtime/server/plugins/nuauth'))
+
+    addServerHandler({ route: '/auth/login', handler: resolve('./runtime/server/routes/login') })
+    addServerHandler({ route: '/auth/callback', handler: resolve('./runtime/server/routes/callback') })
+    addServerHandler({ route: '/auth/refresh', handler: resolve('./runtime/server/routes/refresh') })
+    addServerHandler({ route: '/auth/logout', handler: resolve('./runtime/server/routes/logout') })
 
     if (options.autoImport) {
       addImports({
@@ -103,7 +106,7 @@ export default defineNuxtModule<ModuleOptions>({
       addRouteMiddleware({
         global: true,
         name  : 'nuauth',
-        path  : resolve('./runtime/middleware'),
+        path  : resolve('./runtime/middleware/nuauth'),
       })
     }
   },
