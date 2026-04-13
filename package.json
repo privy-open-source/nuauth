@@ -59,7 +59,7 @@
     "@privyid/eslint-config-persona": "1.2.0",
     "@types/html-escaper": "3.0.4",
     "@types/node": "22.15.21",
-    "@types/simple-oauth2": "5.0.7",
+    "@types/simple-oauth2": "5.0.8",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "@vue/eslint-config-typescript": "13.0.0",
