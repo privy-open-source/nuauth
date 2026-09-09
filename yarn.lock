@@ -3099,7 +3099,7 @@ __metadata:
     "@nuxt/schema": "npm:3.21.2"
     "@privyid/eslint-config-persona": "npm:1.2.0"
     "@types/html-escaper": "npm:3.0.4"
-    "@types/node": "npm:22.15.21"
+    "@types/node": "npm:22.20.2"
     "@types/simple-oauth2": "npm:5.0.7"
     "@typescript-eslint/eslint-plugin": "npm:5.62.0"
     "@typescript-eslint/parser": "npm:5.62.0"
@@ -3716,12 +3716,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.15.21":
-  version: 22.15.21
-  resolution: "@types/node@npm:22.15.21"
+"@types/node@npm:22.20.2":
+  version: 22.20.2
+  resolution: "@types/node@npm:22.20.2"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/f092bbccda2131c2b2c8f720338080aa0ef1d928f5f1062c03954a4f7dafa7ee3ed29bc3e51bd4e2584473b3d943c637a2b39ad7174898970818270187cf10c1
+  checksum: 10c0/1940dbec0c65a454c3651a282970fbfc998e0f0a5492bf5e067d8d9185f0c47cacc0d028153c481c4e6ecd19381ab03bf3f2efadb0cfacd702e74b6d5e4b212e
   languageName: node
   linkType: hard
 
